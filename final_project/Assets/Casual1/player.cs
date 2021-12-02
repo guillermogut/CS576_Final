@@ -22,14 +22,17 @@ public class player : MonoBehaviour
     public bool isAiming;
     public bool isConfirming;
 
+    public GameObject target;
+    public GameObject targetCylinder;
+
     public GameObject actionMenu;
 
     public GameObject playerStatus;
     public GameObject atBar;
-
+    public GameObject confirmMenu;
     void Start()
     {
-
+        target = null;
         Time.timeScale = 1f;
   
         playerObj.transform.position = new Vector3(0f,0f,0f);
@@ -48,7 +51,12 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.rotation.y != 0 || transform.rotation.x != 0)
+        {
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        }
+
+
         float x = gameObject.transform.position.x;
         float z = gameObject.transform.position.z;
         pos = new Vector3(x, 0f, z);
@@ -72,49 +80,110 @@ public class player : MonoBehaviour
             speed = 0;
             transform.rotation = transform.rotation;
             isMoving = false;
-        }
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(isActing)
+
+            Debug.Log("acting");
+            if(isAiming)
             {
-                
-            }
-            else
-            {
-                GetComponent<animController>().isAiming = false;
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
+                Debug.Log("aiming");
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (hit.collider.name == currentMap.name)
+
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                        //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
-                        //sphere.transform.position = hit.point;
+                        if (hit.collider.name == "Handgun")
+                        {
+                            
+                            turnPlayer(hit.point);
+                            target = hit.collider.gameObject;
+                            targetCylinder.SetActive(true);
+                            targetCylinder.transform.position = target.transform.position;
+                            confirmMenu.SetActive(true);
 
-
-
-                        //Vector3 dest = hit.point;
-                        //dest.y = 0f;
-
-
-                        //Destroy(sphere, 10f);
-
-                        turnPlayer(hit.point);
-                        GetComponent<animController>().isRunning = true;
-                        isMoving = true;
+                            actionMenu.GetComponent<actionMenu>().setButtonInteract(false);
+                            
+                            
+                        }
 
 
                     }
+                }
+            }
+           
+        }
+        if(Input.GetMouseButtonDown(0) && !isActing)
+        {
+
+            GetComponent<animController>().isAiming = false;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.name == currentMap.name)
+                {
+                    //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
+                    //sphere.transform.position = hit.point;
+
+
+
+                    //Vector3 dest = hit.point;
+                    //dest.y = 0f;
+
+
+                    //Destroy(sphere, 10f);
+
+                    turnPlayer(hit.point);
+                    GetComponent<animController>().isRunning = true;
+                    isMoving = true;
 
 
                 }
+
+
             }
-            
+
+            //if(isActing)
+            //{
+
+            //}
+            //else
+            //{
+            //    GetComponent<animController>().isAiming = false;
+            //    RaycastHit hit;
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    if (Physics.Raycast(ray, out hit))
+            //    {
+            //        if (hit.collider.name == currentMap.name)
+            //        {
+            //            //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            //            //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
+            //            //sphere.transform.position = hit.point;
+
+
+
+            //            //Vector3 dest = hit.point;
+            //            //dest.y = 0f;
+
+
+            //            //Destroy(sphere, 10f);
+
+            //            turnPlayer(hit.point);
+            //            GetComponent<animController>().isRunning = true;
+            //            isMoving = true;
+
+
+            //        }
+
+
+            //    }
+            //}
+
 
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value ==1)
+        if (Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value ==1)
         {
 
             actionMenu.SetActive(true);

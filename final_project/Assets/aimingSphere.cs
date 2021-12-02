@@ -14,10 +14,10 @@ public class aimingSphere : MonoBehaviour
 
     private void Start()
     {
-        scale = 5;
+        scale = 10;
         growAndrotateSpeed = 5f;
         rotateSpeed = 1f;
-        growSpeed = 5f;
+        growSpeed = 10f;
     }
     public void OnEnable()
     {

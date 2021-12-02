@@ -49,7 +49,7 @@ public class playerStatus : MonoBehaviour
         currentAt = 0;
 
         mpSpeed = 3f;
-        atSpeed = 32f;
+        atSpeed = 62f;
         hpSpeed = 0f;
 
 

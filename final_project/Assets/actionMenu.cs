@@ -1,28 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class actionMenu : MonoBehaviour
 {
     public GameObject player;
     public GameObject aimingSphere;
     public GameObject confirmMenu;
+    public GameObject playerStatus;
+    public GameObject aimingCylinder;
     // Start is called before the first frame update
     private void OnEnable()
     {
         player.GetComponent<player>().isActing = true;
-        
+
+        setButtonInteract(true);
 
     }
 
+    public void setButtonInteract(bool x)
+    {
+        Button[] buttons = GetComponentsInChildren<Button>();
 
+        foreach (var button in buttons)
+        {
+            button.interactable = x;
+        }
+    }
 
 
     public void attackButton()
     {
-        player.GetComponent<player>().isConfirming = true;
+        //player.GetComponent<player>().isConfirming = true;
+        player.GetComponent<player>().isAiming = true;
         aimingSphere.SetActive(true);
-        confirmMenu.SetActive(true);
+        //confirmMenu.SetActive(true);
     }
     public void cancelButton()
     {
@@ -30,6 +43,8 @@ public class actionMenu : MonoBehaviour
         if(player.GetComponent<player>().isActing = true && aimingSphere.activeSelf)
         {
             aimingSphere.SetActive(false);
+            player.GetComponent<player>().target = null;
+            aimingCylinder.SetActive(false);
         }
         else if(player.GetComponent<player>().isActing = true && !aimingSphere.activeSelf)
         {
@@ -37,6 +52,8 @@ public class actionMenu : MonoBehaviour
             aimingSphere.SetActive(false);
             gameObject.SetActive(false);
             player.GetComponent<player>().speed = 2;
+            
+            
         }
     }
     public void itemButton()
