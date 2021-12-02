@@ -59,11 +59,12 @@
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\Examples\Scripts\AutoRotate.cs" />
     <Compile Include="Assets\Ak.cs" />
     <Compile Include="Assets\events.cs" />
+    <Compile Include="Assets\confirmMenu.cs" />
     <Compile Include="Assets\actionMenu.cs" />
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\ImageEffect\WireframeImageEffect.cs" />
     <Compile Include="Assets\UI\PlayerStatus\playerStatus.cs" />
     <Compile Include="Assets\Casual1\player.cs" />
-    <Compile Include="Assets\confirmMenu.cs" />
+    <Compile Include="Assets\testplayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

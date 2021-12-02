@@ -34,7 +34,7 @@ public class animController : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        anim.Play("idle");
+        //anim.Play("idle");
     }
 
     // Update is called once per frame

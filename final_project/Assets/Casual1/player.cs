@@ -9,7 +9,7 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     public GameObject playerObj;
     public GameObject currentMap;
-    private Animator animator;
+    public Animator animator;
     
     public Vector3 pos;
     private Vector3 destination;
@@ -51,7 +51,9 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.rotation.y != 0 || transform.rotation.x != 0)
+
+        
+        if (transform.rotation.y != 0 || transform.rotation.x != 0)
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         }
@@ -63,12 +65,17 @@ public class player : MonoBehaviour
 
         if (isMoving)
         {
-            
+            animator.SetBool("isRunning", true);
+            animator.SetBool("idle", false);
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
             Debug.Log("click");
             if(Vector3.Distance(pos, destination) < .05f)
             {
                
+                animator.SetBool("isRunning", false);
+                animator.SetBool("idle", true);
+
+
                 GetComponent<animController>().isIdle = true;
                 GetComponent<animController>().isRunning = false;
                 GetComponent<animController>().isWalking = false;
@@ -77,6 +84,7 @@ public class player : MonoBehaviour
         }
         if(isActing)
         {
+            animator.SetBool("idle", true);
             speed = 0;
             transform.rotation = transform.rotation;
             isMoving = false;
@@ -135,7 +143,7 @@ public class player : MonoBehaviour
                     //Destroy(sphere, 10f);
 
                     turnPlayer(hit.point);
-                    GetComponent<animController>().isRunning = true;
+                    //GetComponent<animController>().isRunning = true;
                     isMoving = true;
 
 
