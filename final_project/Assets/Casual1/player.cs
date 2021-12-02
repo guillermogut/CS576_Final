@@ -65,6 +65,7 @@ public class player : MonoBehaviour
 
         if (isMoving)
         {
+
             animator.SetBool("isRunning", true);
             animator.SetBool("idle", false);
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
@@ -76,26 +77,30 @@ public class player : MonoBehaviour
                 animator.SetBool("idle", true);
 
 
-                GetComponent<animController>().isIdle = true;
-                GetComponent<animController>().isRunning = false;
-                GetComponent<animController>().isWalking = false;
+                //GetComponent<animController>().isIdle = true;
+                //GetComponent<animController>().isRunning = false;
+                //GetComponent<animController>().isWalking = false;
+                speed = 0;
                 isMoving = false;
             }
         }
+        
         if(isActing)
         {
-            animator.SetBool("idle", true);
             speed = 0;
+            animator.SetBool("idle", true);
+            
             transform.rotation = transform.rotation;
             isMoving = false;
 
             Debug.Log("acting");
             if(isAiming)
             {
+                
                 Debug.Log("aiming");
                 if (Input.GetMouseButtonDown(0))
                 {
-
+                    Debug.Log("after aiming");
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit))
@@ -130,20 +135,10 @@ public class player : MonoBehaviour
             {
                 if (hit.collider.name == currentMap.name)
                 {
-                    //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
-                    //sphere.transform.position = hit.point;
-
-
-
-                    //Vector3 dest = hit.point;
-                    //dest.y = 0f;
-
-
-                    //Destroy(sphere, 10f);
-
+                   
                     turnPlayer(hit.point);
                     //GetComponent<animController>().isRunning = true;
+                    speed = 2;
                     isMoving = true;
 
 
@@ -152,66 +147,17 @@ public class player : MonoBehaviour
 
             }
 
-            //if(isActing)
-            //{
-
-            //}
-            //else
-            //{
-            //    GetComponent<animController>().isAiming = false;
-            //    RaycastHit hit;
-            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    if (Physics.Raycast(ray, out hit))
-            //    {
-            //        if (hit.collider.name == currentMap.name)
-            //        {
-            //            //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //            //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
-            //            //sphere.transform.position = hit.point;
-
-
-
-            //            //Vector3 dest = hit.point;
-            //            //dest.y = 0f;
-
-
-            //            //Destroy(sphere, 10f);
-
-            //            turnPlayer(hit.point);
-            //            GetComponent<animController>().isRunning = true;
-            //            isMoving = true;
-
-
-            //        }
-
-
-            //    }
-            //}
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value ==1)
         {
-
+            speed = 0;
             actionMenu.SetActive(true);
 
 
             //playerStatus.GetComponent<playerStatus>().currentAt = 0;
         }
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GetComponent<RigBuilder>().enabled = false;
-        //    isMoving = false;
-        //    GetComponent<animController>().isWalking = false;
-        //    GetComponent<animController>().isRunning = false;
-        //    GetComponent<animController>().isIdle = false;
-        //    GetComponent<animController>().isAiming = true;
-        //}
-        //if (Input.GetKeyUp(KeyCode.Space))
-        //{
-        //    GetComponent<RigBuilder>().enabled = true;
-        //}
+       
     }
 
     void turnPlayer(Vector3 dest)

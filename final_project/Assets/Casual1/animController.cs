@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Animations.Rigging;
 using UnityEngine;
 
 public class animController : MonoBehaviour
@@ -15,6 +16,9 @@ public class animController : MonoBehaviour
     /// <weapon ready/ not ready>
     public Transform WReady;
     public Transform WNotReady;
+
+    public GameObject player;
+    public GameObject rigLayerWeaponAim;
     /// </summary>
     
 
@@ -41,7 +45,7 @@ public class animController : MonoBehaviour
     void Update()
     {
 
-        
+        rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
         //if (isWalking)
         //{
         //    anim.Play("walking");
@@ -49,19 +53,26 @@ public class animController : MonoBehaviour
         //    //isIdle = false;
         //}
 
-        //if(isRunning)
-        //{
-        //    anim.Play("Rifle Run");
-        //    isWalking = false;
-        //    isIdle = false;
-        //}
-        //if (isIdle)
-        //{
-        //    anim.Play("idle");
-        //    isWalking = false;
-        //    isRunning = false;
+        if (player.GetComponent<player>().isMoving)
+        {
+            //rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
+            anim.Play("Rifle Run");
+            //isWalking = false;
+            //isIdle = false;
+        }
+        if (!player.GetComponent<player>().isMoving)
+        {
+            //rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
+            anim.Play("idle");
+            //isWalking = false;
+            //isRunning = false;
 
-        //}
+        }
+        if (player.GetComponent<player>().isAiming)
+        {
+            anim.Play("idle");
+            rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
+        }
         //if(isAiming)
         //{
         //    weapon.transform.localPosition = new Vector3(-0.00243000011f,0.00319999992f,0.00255999994f);//pos

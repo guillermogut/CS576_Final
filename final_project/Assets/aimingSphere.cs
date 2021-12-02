@@ -40,6 +40,7 @@ public class aimingSphere : MonoBehaviour
         {
             Vector3 rotationToAdd = new Vector3(0, .01f, 0);
             transform.Rotate(rotationToAdd);
+            transform.position = player.transform.position;
             //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + transform.rotation.y * 1f * Time.deltaTime, transform.rotation.z));
         }
     }

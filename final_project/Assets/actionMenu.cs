@@ -45,15 +45,19 @@ public class actionMenu : MonoBehaviour
             aimingSphere.SetActive(false);
             player.GetComponent<player>().target = null;
             aimingCylinder.SetActive(false);
+            player.GetComponent<player>().isAiming = false;
         }
         else if(player.GetComponent<player>().isActing = true && !aimingSphere.activeSelf)
         {
             player.GetComponent<player>().isActing = false;
             aimingSphere.SetActive(false);
+            aimingCylinder.SetActive(false);
             gameObject.SetActive(false);
             player.GetComponent<player>().speed = 2;
-            
-            
+            player.GetComponent<player>().isAiming = false;
+
+
+
         }
     }
     public void itemButton()
