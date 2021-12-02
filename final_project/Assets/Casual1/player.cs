@@ -14,9 +14,15 @@ public class player : MonoBehaviour
     public Vector3 pos;
     private Vector3 destination;
     public float speed;//speed
+    
     private Vector3 lookVector;//WHERE SHE LOOKIN AT
     private GameObject lookArrow;
-    private bool isMoving;
+    public bool isMoving;
+    public bool isActing;
+    public bool isAiming;
+    public bool isConfirming;
+
+    public GameObject actionMenu;
 
     public GameObject playerStatus;
     public GameObject atBar;
@@ -31,6 +37,9 @@ public class player : MonoBehaviour
        
 
         isMoving = false;
+        isActing = false;
+        isAiming = false;
+        isConfirming = false;
         lookVector = new Vector3(0f,0f,1f);
         //speed = 1f;
         
@@ -58,43 +67,60 @@ public class player : MonoBehaviour
                 isMoving = false;
             }
         }
-
+        if(isActing)
+        {
+            speed = 0;
+            transform.rotation = transform.rotation;
+            isMoving = false;
+        }
         if(Input.GetMouseButtonDown(0))
         {
-
-            GetComponent<animController>().isAiming = false;
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray,out hit))
+            if(isActing)
             {
-                if(hit.collider.name == currentMap.name)
+                
+            }
+            else
+            {
+                GetComponent<animController>().isAiming = false;
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
                 {
-                    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
-                    sphere.transform.position = hit.point;
+                    if (hit.collider.name == currentMap.name)
+                    {
+                        //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                        //sphere.transform.localScale = new Vector3(.2f, .2f, .2f);
+                        //sphere.transform.position = hit.point;
 
 
 
-                    Vector3 dest = hit.point;
-                    dest.y = 0f;
+                        //Vector3 dest = hit.point;
+                        //dest.y = 0f;
 
 
-                    Destroy(sphere, 10f);
-                    turnPlayer(hit.point);
-                    GetComponent<animController>().isRunning = true;
-                    isMoving = true;
+                        //Destroy(sphere, 10f);
+
+                        turnPlayer(hit.point);
+                        GetComponent<animController>().isRunning = true;
+                        isMoving = true;
+
+
+                    }
 
 
                 }
-
-
             }
+            
 
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value ==1)
         {
-            playerStatus.GetComponent<playerStatus>().currentAt = 0;
+
+            actionMenu.SetActive(true);
+
+
+            //playerStatus.GetComponent<playerStatus>().currentAt = 0;
         }
         //if(Input.GetKeyDown(KeyCode.Space))
         //{

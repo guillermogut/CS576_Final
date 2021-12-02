@@ -42,41 +42,41 @@ public class animController : MonoBehaviour
     {
 
         
-        if (isWalking)
-        {
-            anim.Play("walking");
-            isRunning = false;
-            isIdle = false;
-        }
-        
-        if(isRunning)
-        {
-            anim.Play("Rifle Run");
-            isWalking = false;
-            isIdle = false;
-        }
-        if(isIdle)
-        {
-            anim.Play("idle");
-            isWalking = false;
-            isRunning = false;
-            
-        }
-        if(isAiming)
-        {
-            weapon.transform.localPosition = new Vector3(-0.00243000011f,0.00319999992f,0.00255999994f);//pos
-            weapon.transform.localRotation = new Quaternion(-0.218622565f, -0.426985323f, 0.193708897f, 0.855783105f);//rotation
-            anim.Play("Firing Rifle");
-            isWalking = false;
-            isRunning = false;
-            isIdle = false;
-        }
-        else
-        {   anim.StopPlayback();
-            weapon.transform.localPosition = new Vector3(0.000230000005f, -0.00013f, 0.00179000001f);
-            weapon.transform.localRotation = new Quaternion(0.372742593f, -0.481262475f, 0.236914799f, 0.757179439f);
-            
-            //return;
-        }
+        //if (isWalking)
+        //{
+        //    anim.Play("walking");
+        //    //isRunning = false;
+        //    //isIdle = false;
+        //}
+
+        //if(isRunning)
+        //{
+        //    anim.Play("Rifle Run");
+        //    isWalking = false;
+        //    isIdle = false;
+        //}
+        //if (isIdle)
+        //{
+        //    anim.Play("idle");
+        //    isWalking = false;
+        //    isRunning = false;
+
+        //}
+        //if(isAiming)
+        //{
+        //    weapon.transform.localPosition = new Vector3(-0.00243000011f,0.00319999992f,0.00255999994f);//pos
+        //    weapon.transform.localRotation = new Quaternion(-0.218622565f, -0.426985323f, 0.193708897f, 0.855783105f);//rotation
+        //    anim.Play("Firing Rifle");
+        //    isWalking = false;
+        //    isRunning = false;
+        //    isIdle = false;
+        //}
+        //else
+        //{   anim.StopPlayback();
+        //    weapon.transform.localPosition = new Vector3(0.000230000005f, -0.00013f, 0.00179000001f);
+        //    weapon.transform.localRotation = new Quaternion(0.372742593f, -0.481262475f, 0.236914799f, 0.757179439f);
+
+        //    //return;
+        //}
     }
 }
