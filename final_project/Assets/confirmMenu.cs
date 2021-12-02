@@ -39,6 +39,7 @@ public class confirmMenu : MonoBehaviour
         gameObject.SetActive(false);
         player.GetComponent<player>().isConfirming = false;
         actionMenu.GetComponent<actionMenu>().setButtonInteract(true);
+        aimingCylinder.SetActive(false);
 
     }
 }
