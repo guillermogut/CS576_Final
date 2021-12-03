@@ -21,6 +21,7 @@ public class player : MonoBehaviour
     public bool isActing;
     public bool isAiming;
     public bool isConfirming;
+    public bool isFiring;
 
     public GameObject target;
     public GameObject targetCylinder;
@@ -43,6 +44,7 @@ public class player : MonoBehaviour
         isActing = false;
         isAiming = false;
         isConfirming = false;
+        isFiring = false;
         lookVector = new Vector3(0f,0f,1f);
         //speed = 1f;
         
@@ -52,7 +54,10 @@ public class player : MonoBehaviour
     void Update()
     {
 
-        
+        if(isFiring)
+        {
+            return;
+        }
         if (transform.rotation.y != 0 || transform.rotation.x != 0)
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -66,15 +71,15 @@ public class player : MonoBehaviour
         if (isMoving)
         {
 
-            animator.SetBool("isRunning", true);
-            animator.SetBool("idle", false);
+            //animator.SetBool("isRunning", true);
+            //animator.SetBool("idle", false);
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
             Debug.Log("click");
             if(Vector3.Distance(pos, destination) < .05f)
             {
                
-                animator.SetBool("isRunning", false);
-                animator.SetBool("idle", true);
+                //animator.SetBool("isRunning", false);
+                //animator.SetBool("idle", true);
 
 
                 //GetComponent<animController>().isIdle = true;
@@ -84,11 +89,14 @@ public class player : MonoBehaviour
                 isMoving = false;
             }
         }
-        
+        if(!isMoving)
+        {
+
+        }
         if(isActing)
         {
             speed = 0;
-            animator.SetBool("idle", true);
+            //animator.SetBool("idle", true);
             
             transform.rotation = transform.rotation;
             isMoving = false;

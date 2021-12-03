@@ -9,6 +9,7 @@ public class confirmMenu : MonoBehaviour
     public GameObject playerStatus;
     public GameObject aimingSphere;
     public GameObject aimingCylinder;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class confirmMenu : MonoBehaviour
 
     public void confirm()
     {
+
+        
         aimingSphere.SetActive(false);
         gameObject.SetActive(false);
         actionMenu.SetActive(false);
@@ -31,6 +34,7 @@ public class confirmMenu : MonoBehaviour
         playerStatus.GetComponent<playerStatus>().currentAt = 0;
         player.GetComponent<player>().isActing = false;
         player.GetComponent<player>().isAiming = false;
+        player.GetComponent<player>().isFiring = true;
         aimingCylinder.SetActive(false);
     }
 

@@ -20,7 +20,7 @@ public class animController : MonoBehaviour
     public GameObject player;
     public GameObject rigLayerWeaponAim;
     /// </summary>
-    
+    public GameObject muzzleFlash;
 
 
     // Start is called before the first frame update
@@ -45,34 +45,57 @@ public class animController : MonoBehaviour
     void Update()
     {
 
-        rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
-        //if (isWalking)
-        //{
-        //    anim.Play("walking");
-        //    //isRunning = false;
-        //    //isIdle = false;
-        //}
+        //rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
+        ////if (isWalking)
+        ////{
+        ////    anim.Play("walking");
+        ////    //isRunning = false;
+        ////    //isIdle = false;
+        ////}
 
         if (player.GetComponent<player>().isMoving)
         {
-            //rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
-            anim.Play("Rifle Run");
+            anim.SetBool("isRunning",true);
+            anim.SetBool("isFiring",false);
+            anim.SetBool("idle", false);
+            rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
+            //anim.Play("Rifle Run");
             //isWalking = false;
             //isIdle = false;
         }
         if (!player.GetComponent<player>().isMoving)
         {
-            //rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
-            anim.Play("idle");
+            anim.SetBool("idle",true);
+            anim.SetBool("isRunning",false);
+            anim.SetBool("isFiring",false);
+            rigLayerWeaponAim.GetComponent<Rig>().weight = 0;
+            //anim.Play("idle");
             //isWalking = false;
             //isRunning = false;
 
         }
         if (player.GetComponent<player>().isAiming)
         {
-            anim.Play("idle");
+            anim.SetBool("idle", true);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isFiring", false);
+            //anim.Play("idle");
             rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
         }
+
+        if (player.GetComponent<player>().isFiring)
+        {
+            rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
+            anim.SetBool("isFiring",true);
+            anim.SetBool("idle",false);
+            anim.SetBool("isRunning",false);
+
+
+            //fire weapon here
+
+
+        }
+        
         //if(isAiming)
         //{
         //    weapon.transform.localPosition = new Vector3(-0.00243000011f,0.00319999992f,0.00255999994f);//pos
@@ -89,5 +112,24 @@ public class animController : MonoBehaviour
 
         //    //return;
         //}
+    }
+    public void setIsFiringTrue()
+    {
+        player.GetComponent<player>().isFiring = true;
+    }
+    public void muzzlFlash()
+    {
+        if(muzzleFlash.activeSelf)
+        {
+            muzzleFlash.SetActive(false);
+        }
+        else
+        {
+            muzzleFlash.SetActive(true);
+        }
+    }
+    public void setIsFiringFalse()
+    {
+        player.GetComponent<player>().isFiring = false;
     }
 }
