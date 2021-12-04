@@ -10,11 +10,13 @@ public class actionMenu : MonoBehaviour
     public GameObject confirmMenu;
     public GameObject playerStatus;
     public GameObject aimingCylinder;
+    public Button lvlButton;
+    public GameObject levelMenu;
     // Start is called before the first frame update
     private void OnEnable()
     {
         player.GetComponent<player>().isActing = true;
-
+        
         setButtonInteract(true);
 
     }
@@ -29,7 +31,17 @@ public class actionMenu : MonoBehaviour
         }
     }
 
-
+    private void Update()
+    {
+        if(player.GetComponent<player>().statusPoints>0)
+        {
+            lvlButton.interactable = true;
+        }
+        else
+        {
+            lvlButton.interactable = false;
+        }
+    }
     public void attackButton()
     {
         //player.GetComponent<player>().isConfirming = true;
@@ -64,4 +76,14 @@ public class actionMenu : MonoBehaviour
     {
 
     }
+
+    public void levelUpButton()
+    {
+        //player.GetComponent<player>().isLeveling = true;
+        player.GetComponent<player>().enabled = false;
+        levelMenu.SetActive(true);
+        setButtonInteract(false);
+    }
+
+    
 }

@@ -63,7 +63,7 @@ public class playerStatus : MonoBehaviour
         if (currentAt == 100)
         {
             ATFULL.SetActive(true);
-            Debug.Log("Active");
+            //Debug.Log("Active");
             if (textSize)// text small
             {
                 ATFULL.GetComponent<TextMeshProUGUI>().fontSize += .02f;// increase the font size

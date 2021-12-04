@@ -1,0 +1,246 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.17f1 (a4537701e4ab) revision 10769271'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.1348; Version 2009; 64bit' Language: 'en' Physical Memory: 32683 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.17f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Gui/Documents/GitHub/CS576_Final/final_project
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55235
+Successfully changed project path to: C:/Users/Gui/Documents/GitHub/CS576_Final/final_project
+C:/Users/Gui/Documents/GitHub/CS576_Final/final_project
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 37.25 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.17f1 (a4537701e4ab)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Gui/Documents/GitHub/CS576_Final/final_project/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1f08)
+    Vendor:   
+    VRAM:     5980 MB
+    Driver:   27.21.14.6140
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56364
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002774 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 37.24 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.219 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1219ms)
+		BeginReloadAssembly (50ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (393ms)
+			LoadAssemblies (48ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (133ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (160ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (37ms)
+				BeforeProcessingInitializeOnLoad (16ms)
+				ProcessInitializeOnLoadAttributes (77ms)
+				ProcessInitializeOnLoadMethodAttributes (25ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004011 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.702 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1703ms)
+		BeginReloadAssembly (136ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (18ms)
+		EndReloadAssembly (1507ms)
+			LoadAssemblies (80ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (251ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (56ms)
+			SetupLoadedEditorAssemblies (1033ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (85ms)
+				ProcessInitializeOnLoadAttributes (930ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.44 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1966 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.0 MB.
+System memory in use after: 95.1 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 2411.
+Total: 3.003800 ms (FindLiveObjects: 0.190900 ms CreateObjectMapping: 0.047100 ms MarkObjects: 2.744000 ms  DeleteObjects: 0.020900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Cancel_01.wav
+  artifactKey: Guid(7e58c1718e011c847949792efd486a17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Cancel_01.wav using Guid(7e58c1718e011c847949792efd486a17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ccd7e5362edbe5a1677ee5db6249bca') in 0.077446 seconds 
+  Import took 0.080379 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000260 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Cancel_02.wav
+  artifactKey: Guid(805b9257f76a9ce47b16409048985f89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Cancel_02.wav using Guid(805b9257f76a9ce47b16409048985f89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f1fa3ec2423b9475a64a7d7b8efe013') in 0.011641 seconds 
+  Import took 0.014675 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.027416 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Cancel_03.wav
+  artifactKey: Guid(b190a8a5f59499f4f9204e64b9a04da9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Cancel_03.wav using Guid(b190a8a5f59499f4f9204e64b9a04da9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '708a9692437f2f38c09beeae9f58e455') in 0.010921 seconds 
+  Import took 0.014106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.718189 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Cancel_04.wav
+  artifactKey: Guid(bbae85860e1880b4c8b056d33a4716eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Cancel_04.wav using Guid(bbae85860e1880b4c8b056d33a4716eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '852721753346bcdf69831a9a5a2f434d') in 0.010814 seconds 
+  Import took 0.013959 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.543802 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Confirm_01.wav
+  artifactKey: Guid(dca3084cb66e8824bab682c584bec504) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Confirm_01.wav using Guid(dca3084cb66e8824bab682c584bec504) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f29b82c6395bef3a6993701af7dda09') in 0.012928 seconds 
+  Import took 0.015958 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.727788 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Confirm_03.wav
+  artifactKey: Guid(311ed1f1bf2aa1847b8f10462f75982f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Confirm_03.wav using Guid(311ed1f1bf2aa1847b8f10462f75982f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5907d020f5dd7cb77f1ced1f55c29a45') in 0.011604 seconds 
+  Import took 0.014726 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.900883 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Confirm_02.wav
+  artifactKey: Guid(d4007067d30a702478f8de23ab74795f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Confirm_02.wav using Guid(d4007067d30a702478f8de23ab74795f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '069ec5e2542b1c84b9e4ae350c38b721') in 0.012058 seconds 
+  Import took 0.015102 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.705987 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_move_01.wav
+  artifactKey: Guid(795c4ea2ea1ffc54982c652644a64520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_move_01.wav using Guid(795c4ea2ea1ffc54982c652644a64520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af3473a3cf098ab01136fa43581fb99f') in 0.010362 seconds 
+  Import took 0.013588 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.954825 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_move_02.wav
+  artifactKey: Guid(ae46e87a1569d1b45bad01b7cc1de3d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_move_02.wav using Guid(ae46e87a1569d1b45bad01b7cc1de3d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a773215cd5a026c5c5f54d30804e83d') in 0.011222 seconds 
+  Import took 0.014372 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.939852 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_move_03.wav
+  artifactKey: Guid(76900dfe0d15dc34fb621e6ab0cf8466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_move_03.wav using Guid(76900dfe0d15dc34fb621e6ab0cf8466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f43daa9cd965890515d48af426f6f202') in 0.010611 seconds 
+  Import took 0.013912 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.744103 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Twinkle_01.wav
+  artifactKey: Guid(616cf7f5cffb52e4caa0df9070ee4067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Twinkle_01.wav using Guid(616cf7f5cffb52e4caa0df9070ee4067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8b7e6f4c6e591797bc48bfa209606f5') in 0.010313 seconds 
+  Import took 0.013511 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.086831 seconds.
+  path: Assets/Fantasy Menu SFX/RPG_Menu_Twinkle_02.wav
+  artifactKey: Guid(563884892133af446bdb373e00a7a764) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fantasy Menu SFX/RPG_Menu_Twinkle_02.wav using Guid(563884892133af446bdb373e00a7a764) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4280c04836a8b5776cf8de6dccc6e235') in 0.011120 seconds 
+  Import took 0.014264 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2320.480392 seconds.
+  path: Assets/UI/Menus/confirm.mp3
+  artifactKey: Guid(26193212d5707544088b1cd19f5a8b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Menus/confirm.mp3 using Guid(26193212d5707544088b1cd19f5a8b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '786ea2c6d1b05ada4dce2e868a1a19db') in 0.015844 seconds 
+  Import took 0.019266 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.456096 seconds.
+  path: Assets/UI/Menus/cancel.mp3
+  artifactKey: Guid(253c82423de1a974c932df3d807af31b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Menus/cancel.mp3 using Guid(253c82423de1a974c932df3d807af31b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fc1877f6fba38b8eeab963b6ddecdaa') in 0.012268 seconds 
+  Import took 0.015564 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

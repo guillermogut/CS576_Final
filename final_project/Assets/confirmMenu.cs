@@ -31,7 +31,7 @@ public class confirmMenu : MonoBehaviour
         gameObject.SetActive(false);
         actionMenu.SetActive(false);
         player.GetComponent<player>().speed = 2;
-        playerStatus.GetComponent<playerStatus>().currentAt = 0;
+        
         player.GetComponent<player>().isActing = false;
         player.GetComponent<player>().isAiming = false;
         player.GetComponent<player>().isFiring = true;

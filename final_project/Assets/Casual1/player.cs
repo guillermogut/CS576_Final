@@ -13,7 +13,13 @@ public class player : MonoBehaviour
     
     public Vector3 pos;
     private Vector3 destination;
+    public int health;
+    public int attack;
     public float speed;//speed
+    public int level;
+    public float exp;
+    public float expForNext;
+    public int statusPoints;
     
     private Vector3 lookVector;//WHERE SHE LOOKIN AT
     private GameObject lookArrow;
@@ -22,6 +28,7 @@ public class player : MonoBehaviour
     public bool isAiming;
     public bool isConfirming;
     public bool isFiring;
+    public bool isLeveling;
 
     public GameObject target;
     public GameObject targetCylinder;
@@ -31,6 +38,10 @@ public class player : MonoBehaviour
     public GameObject playerStatus;
     public GameObject atBar;
     public GameObject confirmMenu;
+    public GameObject lvlMenu;
+
+    //effects
+    public GameObject airTxt;
     void Start()
     {
         target = null;
@@ -38,26 +49,36 @@ public class player : MonoBehaviour
   
         playerObj.transform.position = new Vector3(0f,0f,0f);
         pos = playerObj.transform.position;
-       
 
+        health = 100;
+        attack = 50;
         isMoving = false;
         isActing = false;
         isAiming = false;
         isConfirming = false;
         isFiring = false;
+        isLeveling = false;
         lookVector = new Vector3(0f,0f,1f);
         //speed = 1f;
-        
+        level = 0;
+        statusPoints = 0;
+        expForNext = getExperienceForNextLevel(level + 1);
+
+        //for(int i = 1; i< 5; i++)
+        //{
+        //    Debug.Log("experience total needed for level " + i+" : " + getExperienceForNextLevel(i));
+        //}
     }
 
+    private void OnEnable()
+    {
+        lvlMenu.GetComponent<lvlUp>().exitLevelUp();
+       
+    }
     // Update is called once per frame
     void Update()
     {
-
-        if(isFiring)
-        {
-            return;
-        }
+        
         if (transform.rotation.y != 0 || transform.rotation.x != 0)
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -74,7 +95,7 @@ public class player : MonoBehaviour
             //animator.SetBool("isRunning", true);
             //animator.SetBool("idle", false);
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
-            Debug.Log("click");
+            //Debug.Log("click");
             if(Vector3.Distance(pos, destination) < .05f)
             {
                
@@ -101,14 +122,14 @@ public class player : MonoBehaviour
             transform.rotation = transform.rotation;
             isMoving = false;
 
-            Debug.Log("acting");
+            //Debug.Log("acting");
             if(isAiming)
             {
                 
-                Debug.Log("aiming");
+                //Debug.Log("aiming");
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("after aiming");
+                    //Debug.Log("after aiming");
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit))
@@ -183,4 +204,29 @@ public class player : MonoBehaviour
         cyl.transform.localScale = new Vector3(.2f, .2f, 1f);
         cyl.transform.position = pos;
     }
+
+
+    public float getExperienceForNextLevel(int lvl)
+    {
+        int lvl2 = lvl;
+
+        if (lvl == 1) return 50f;
+        return Mathf.Log(lvl2)* Mathf.Log(lvl2) + 2*Mathf.Log(lvl2)* 50;
+    }
+
+    public void getExp(float exp)
+    {
+        
+        this.exp += exp;
+
+        if(this.exp >= expForNext)
+        {//Debug.Log("exp GOT");
+            //show lvl up effect
+            Instantiate(airTxt,transform);
+            statusPoints++;
+            level++;
+            expForNext = getExperienceForNextLevel(level+1);
+        }
+    }
+
 }
