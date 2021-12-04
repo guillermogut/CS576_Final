@@ -26,10 +26,12 @@ public class animController : MonoBehaviour
     public GameObject atBar;
     public GameObject playerStatus;
 
+    public float normalAttackSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        normalAttackSpeed = 1f;
         WNotReady.transform.position = weapon.transform.position;
         WNotReady.transform.rotation = weapon.transform.rotation;
      
@@ -74,6 +76,7 @@ public class animController : MonoBehaviour
 
         if (player.GetComponent<player>().isFiring)
         {
+            
             rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
             anim.SetBool("isFiring",true);
             anim.SetBool("idle",false);
@@ -85,6 +88,7 @@ public class animController : MonoBehaviour
     }
     public void setIsFiringTrue()
     {
+        anim.speed = player.GetComponent<player>().attackSpeed;
         player.GetComponent<player>().enabled = true;
     }
     public void muzzlFlash()
@@ -95,7 +99,7 @@ public class animController : MonoBehaviour
         }
         else
         {
-            weapon.GetComponent<AudioSource>().Play();
+            
             
             muzzleFlash.SetActive(true);
             target = player.GetComponent<player>().target;
@@ -105,7 +109,13 @@ public class animController : MonoBehaviour
     }
     public void setIsFiringFalse()
     {
+        anim.speed = normalAttackSpeed;
         player.GetComponent<player>().enabled = true;
         player.GetComponent<player>().isFiring = false;
+    }
+
+    public void playGunshotSound()
+    {
+        weapon.GetComponent<AudioSource>().Play();
     }
 }

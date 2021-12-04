@@ -53,26 +53,26 @@
     <UnityVersion>2020.3.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\lvlUp.cs" />
     <Compile Include="Assets\Casual1\animController.cs" />
-    <Compile Include="Assets\aimingSphere.cs" />
-    <Compile Include="Assets\PlayerStats.cs" />
-    <Compile Include="Assets\handgun.cs" />
+    <Compile Include="Assets\scripts\aimingSphere.cs" />
+    <Compile Include="Assets\scripts\PlayerStats.cs" />
+    <Compile Include="Assets\scripts\handgun.cs" />
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\Examples\Scripts\AutoRotate.cs" />
-    <Compile Include="Assets\cameraScript.cs" />
-    <Compile Include="Assets\Ak.cs" />
-    <Compile Include="Assets\events.cs" />
-    <Compile Include="Assets\confirmMenu.cs" />
-    <Compile Include="Assets\actionMenu.cs" />
+    <Compile Include="Assets\scripts\cameraScript.cs" />
+    <Compile Include="Assets\scripts\txt.cs" />
+    <Compile Include="Assets\scripts\Ak.cs" />
+    <Compile Include="Assets\scripts\events.cs" />
+    <Compile Include="Assets\scripts\confirmMenu.cs" />
+    <Compile Include="Assets\scripts\actionMenu.cs" />
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\ImageEffect\WireframeImageEffect.cs" />
     <Compile Include="Assets\BigRookGames\_AssetPacks\Stylized Weapon Pack\M4 Scoped Assault Rifle\Scripts\GunfireController.cs" />
-    <Compile Include="Assets\thirdPersonCamera.cs" />
+    <Compile Include="Assets\scripts\thirdPersonCamera.cs" />
     <Compile Include="Assets\UI\PlayerStatus\playerStatus.cs" />
+    <Compile Include="Assets\scripts\dmgTxt.cs" />
+    <Compile Include="Assets\scripts\playerProgression.cs" />
     <Compile Include="Assets\Casual1\player.cs" />
-    <Compile Include="Assets\testplayer.cs" />
-    <Compile Include="Assets\playerProgression.cs" />
-    <Compile Include="Assets\txt.cs" />
-    <Compile Include="Assets\dmgTxt.cs" />
-    <Compile Include="Assets\lvlUp.cs" />
+    <Compile Include="Assets\scripts\testplayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

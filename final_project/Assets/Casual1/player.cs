@@ -15,7 +15,9 @@ public class player : MonoBehaviour
     private Vector3 destination;
     public int health;
     public int attack;
+    public float attackSpeed;
     public float speed;//speed
+    public float currentSpeed;
     public int level;
     public float exp;
     public float expForNext;
@@ -52,6 +54,7 @@ public class player : MonoBehaviour
 
         health = 100;
         attack = 50;
+        attackSpeed = 1;
         isMoving = false;
         isActing = false;
         isAiming = false;
@@ -59,15 +62,12 @@ public class player : MonoBehaviour
         isFiring = false;
         isLeveling = false;
         lookVector = new Vector3(0f,0f,1f);
+        currentSpeed = 2f;
         //speed = 1f;
         level = 0;
         statusPoints = 0;
         expForNext = getExperienceForNextLevel(level + 1);
 
-        //for(int i = 1; i< 5; i++)
-        //{
-        //    Debug.Log("experience total needed for level " + i+" : " + getExperienceForNextLevel(i));
-        //}
     }
 
     private void OnEnable()
@@ -78,7 +78,7 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("speed: " + speed);
         if (transform.rotation.y != 0 || transform.rotation.x != 0)
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -92,20 +92,11 @@ public class player : MonoBehaviour
         if (isMoving)
         {
 
-            //animator.SetBool("isRunning", true);
-            //animator.SetBool("idle", false);
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
             //Debug.Log("click");
             if(Vector3.Distance(pos, destination) < .05f)
             {
-               
-                //animator.SetBool("isRunning", false);
-                //animator.SetBool("idle", true);
 
-
-                //GetComponent<animController>().isIdle = true;
-                //GetComponent<animController>().isRunning = false;
-                //GetComponent<animController>().isWalking = false;
                 speed = 0;
                 isMoving = false;
             }
@@ -117,7 +108,7 @@ public class player : MonoBehaviour
         if(isActing)
         {
             speed = 0;
-            //animator.SetBool("idle", true);
+
             
             transform.rotation = transform.rotation;
             isMoving = false;
@@ -228,5 +219,6 @@ public class player : MonoBehaviour
             expForNext = getExperienceForNextLevel(level+1);
         }
     }
+
 
 }
