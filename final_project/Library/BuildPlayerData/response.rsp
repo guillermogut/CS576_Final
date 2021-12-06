@@ -1,4 +1,5 @@
 -a="C:\Users\Gui\Documents\GitHub\CS576_Final\final_project\Library\PlayerScriptAssemblies\Assembly-CSharp.dll"
+-a="C:\Users\Gui\Documents\GitHub\CS576_Final\final_project\Library\PlayerScriptAssemblies\Cinemachine.dll"
 -a="C:\Users\Gui\Documents\GitHub\CS576_Final\final_project\Library\PlayerScriptAssemblies\Unity.Burst.dll"
 -a="C:\Users\Gui\Documents\GitHub\CS576_Final\final_project\Library\PlayerScriptAssemblies\UnityEngine.TestRunner.dll"
 -a="C:\Users\Gui\Documents\GitHub\CS576_Final\final_project\Library\PlayerScriptAssemblies\Unity.Timeline.dll"
