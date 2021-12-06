@@ -36,6 +36,8 @@ public class playerStatus : MonoBehaviour
 
     public Text readyText;
 
+    public GameObject healButton;
+    public GameObject player;
     void Start()
     {
         textSize = true;
@@ -98,7 +100,7 @@ public class playerStatus : MonoBehaviour
         {
             currentHp = 100;
         }
-        hpBar.GetComponent<Slider>().value = currentHp/100;
+        hpBar.GetComponent<Slider>().value = currentHp/player.GetComponent<player>().health;
 
 
 
@@ -108,6 +110,14 @@ public class playerStatus : MonoBehaviour
         if (currentMp > 100)
         {
             currentMp = 100;
+        }
+        if(currentMp > 50)
+        {
+            healButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            healButton.GetComponent<Button>().interactable = false;
         }
         mpBar.GetComponent<Slider>().value = currentMp / 100;
 

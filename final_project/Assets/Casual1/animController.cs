@@ -28,9 +28,15 @@ public class animController : MonoBehaviour
 
     public float normalAttackSpeed;
 
+    public GameObject rightHandIK;
+
+    public bool isHealing;
+    public GameObject healEffect;
+    public GameObject healingSound;
     // Start is called before the first frame update
     void Start()
     {
+        isHealing = false;
         normalAttackSpeed = 1f;
         WNotReady.transform.position = weapon.transform.position;
         WNotReady.transform.rotation = weapon.transform.rotation;
@@ -48,7 +54,14 @@ public class animController : MonoBehaviour
     void Update()
     {
 
-
+        if(isHealing)
+        {
+            rightHandIK.GetComponent<TwoBoneIKConstraint>().weight = 0;
+        }
+        else if(!isHealing)
+        {
+            rightHandIK.GetComponent<TwoBoneIKConstraint>().weight = 1;
+        }
         if (player.GetComponent<player>().isMoving)
         {
             anim.SetBool("isRunning",true);
@@ -117,5 +130,24 @@ public class animController : MonoBehaviour
     public void playGunshotSound()
     {
         weapon.GetComponent<AudioSource>().Play();
+    }
+
+    public void relaxRightIK()
+    {
+        isHealing = true;
+        
+    }
+
+    public void tightenRightIk()
+    {
+        isHealing = false;
+        anim.SetBool("isHealing", false);
+    }
+
+    public void playHealEffect()
+    {
+        playerStatus.GetComponent<playerStatus>().currentMp =0;
+        healingSound.GetComponent<AudioSource>().Play();
+        healEffect.GetComponent<ParticleSystem>().Play();
     }
 }

@@ -14,6 +14,7 @@ public class player : MonoBehaviour
     public Vector3 pos;
     private Vector3 destination;
     public int health;
+    public float mana;
     public int attack;
     public float attackSpeed;
     public float speed;//speed
@@ -32,6 +33,7 @@ public class player : MonoBehaviour
     public bool isFiring;
     public bool isLeveling;
 
+    public GameObject aimingSphere;
     public GameObject target;
     public GameObject targetCylinder;
 
@@ -54,6 +56,7 @@ public class player : MonoBehaviour
         pos = playerObj.transform.position;
 
         health = 100;
+        mana = 0;
         attack = 50;
         attackSpeed = 1;
         isMoving = false;
@@ -126,7 +129,8 @@ public class player : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.tag == "Enemy")
+
+                        if (hit.collider.tag == "Enemy" && hit.collider.bounds.Intersects(aimingSphere.GetComponent<Collider>().bounds))
                         {
                             
                             turnPlayer(hit.point);

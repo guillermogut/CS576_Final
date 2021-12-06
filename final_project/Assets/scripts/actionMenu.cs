@@ -15,6 +15,8 @@ public class actionMenu : MonoBehaviour
     public GameObject confirmSound;
     public GameObject cancelSound;
     public GameObject itemMenu;
+    public GameObject mpBar;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -94,5 +96,9 @@ public class actionMenu : MonoBehaviour
         setButtonInteract(false);
     }
 
-    
+    public void healButton()
+    {
+        player.GetComponent<Animator>().SetBool("isHealing",true);
+        mpBar.GetComponent<Slider>().value -= .5f;
+    }
 }
