@@ -14,6 +14,7 @@ public class actionMenu : MonoBehaviour
     public GameObject levelMenu;
     public GameObject confirmSound;
     public GameObject cancelSound;
+    public GameObject itemMenu;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -55,29 +56,33 @@ public class actionMenu : MonoBehaviour
     public void cancelButton()
     {
         cancelSound.GetComponent<AudioSource>().Play();
-        if(player.GetComponent<player>().isActing = true && aimingSphere.activeSelf)
+
+
+
+        if(player.GetComponent<player>().isActing&& aimingSphere.activeSelf)
         {
+            Debug.Log("first");
             aimingSphere.SetActive(false);
             player.GetComponent<player>().target = null;
             aimingCylinder.SetActive(false);
             player.GetComponent<player>().isAiming = false;
         }
-        else if(player.GetComponent<player>().isActing = true && !aimingSphere.activeSelf)
+        else if(player.GetComponent<player>().isActing && !aimingSphere.activeSelf)
         {
+            Debug.Log("second");
             player.GetComponent<player>().isActing = false;
-            aimingSphere.SetActive(false);
+            //aimingSphere.SetActive(false);
             aimingCylinder.SetActive(false);
             gameObject.SetActive(false);
-            player.GetComponent<player>().speed = 2;
+            player.GetComponent<player>().speed = player.GetComponent<player>().currentSpeed;
             player.GetComponent<player>().isAiming = false;
-
 
 
         }
     }
     public void itemButton()
     {
-
+        itemMenu.SetActive(true);
     }
 
     public void levelUpButton()

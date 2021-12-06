@@ -54,6 +54,8 @@ public class lvlUp : MonoBehaviour
         }
         
         player.GetComponent<player>().health += (int)(player.GetComponent<player>().health * .5);
+
+        
     }
 
     public void increaseAttack()
@@ -63,7 +65,7 @@ public class lvlUp : MonoBehaviour
             player.GetComponent<player>().statusPoints--;
         }
         
-        player.GetComponent<player>().attack += 10;
+        player.GetComponent<player>().attack += 20;
     }
 
     public void increaseSpeed()
@@ -73,7 +75,7 @@ public class lvlUp : MonoBehaviour
             player.GetComponent<player>().statusPoints--;
         }
         
-        player.GetComponent<player>().speed += .2f;
+        player.GetComponent<player>().currentSpeed += .5f;
     }
     public void increaseAttackSpeed()
     {
@@ -82,7 +84,7 @@ public class lvlUp : MonoBehaviour
             player.GetComponent<player>().statusPoints--;
         }
         
-        player.GetComponent<player>().attackSpeed += .2f;
+        player.GetComponent<player>().attackSpeed += .5f;
     }
 
     public void exitLevelUp()
@@ -92,7 +94,8 @@ public class lvlUp : MonoBehaviour
         Debug.Log("player script " + player.GetComponent<player>().enabled);
         
         gameObject.SetActive(false);
-        player.GetComponent<player>().speed = 2;
+        player.GetComponent<player>().speed = player.GetComponent<player>().currentSpeed;
+        player.GetComponent<player>().isLeveling = false;
         actionMenu.GetComponent<actionMenu>().setButtonInteract(true);
     }
 }
