@@ -65,17 +65,19 @@
     <Compile Include="Assets\scripts\events.cs" />
     <Compile Include="Assets\scripts\confirmMenu.cs" />
     <Compile Include="Assets\scripts\actionMenu.cs" />
+    <Compile Include="Assets\itemMenu.cs" />
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\ImageEffect\WireframeImageEffect.cs" />
     <Compile Include="Assets\BigRookGames\_AssetPacks\Stylized Weapon Pack\M4 Scoped Assault Rifle\Scripts\GunfireController.cs" />
+    <Compile Include="Assets\itemSlot.cs" />
     <Compile Include="Assets\scripts\thirdPersonCamera.cs" />
     <Compile Include="Assets\UI\PlayerStatus\playerStatus.cs" />
+    <Compile Include="Assets\item.cs" />
     <Compile Include="Assets\scripts\dmgTxt.cs" />
     <Compile Include="Assets\scripts\playerProgression.cs" />
     <Compile Include="Assets\Casual1\player.cs" />
     <Compile Include="Assets\scripts\testplayer.cs" />
-    <Compile Include="Assets\itemMenu.cs" />
-    <Compile Include="Assets\itemSlot.cs" />
-    <Compile Include="Assets\item.cs" />
+    <Compile Include="Assets\fadeToBlack.cs" />
+    <Compile Include="Assets\deathMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
