@@ -12,6 +12,7 @@ public class levelManager : MonoBehaviour
     public float spawnSpeed;
     public int spawnSize;
     public GameObject floorFolder;
+    public GameObject enemyPrefab;
 
     private int enemiesSpawned;
     private int enemiesDefeated;
@@ -57,10 +58,6 @@ public class levelManager : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
 
-        GameObject enemyPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube); // have as public variable eventually
-        enemyPrefab.transform.localScale = new Vector3(2f, 2f, 2f);
-        enemyPrefab.transform.position = new Vector3(100f, 100f, 100f);
-
         yield return new WaitForSeconds(spawnSpeed);
         while (enemiesSpawned < totalEnemies)
         {
@@ -75,16 +72,20 @@ public class levelManager : MonoBehaviour
                     int rand = Random.Range(0, floorTiles.Length - 1);
                     randTile = floorTiles[rand];
 
-                    if (Mathf.Abs(character.transform.position.z - randTile.position.z) > 10f && Mathf.Abs(character.transform.position.x - randTile.position.x) > 10f)
+                    float zdiff = Mathf.Abs(character.transform.position.z - randTile.position.z);
+                    float xdiff = Mathf.Abs(character.transform.position.x - randTile.position.x);
+
+                    if ((zdiff > 10f && zdiff < 30f) && (xdiff > 10f && xdiff < 30f))
                     {
                         valid = true;
                     }
                 }
 
-                Vector3 enemyPosition = new Vector3(randTile.position.x, randTile.position.y + 10f, randTile.position.z);
+                Vector3 enemyPosition = new Vector3(randTile.position.x, randTile.position.y, randTile.position.z);
                 Quaternion enemyRotation = new Quaternion(0f, 0f, 0f, 0f);
 
                 GameObject enemy = Instantiate(enemyPrefab, enemyPosition, enemyRotation) as GameObject;
+                enemy.AddComponent<DogKnight>();
                 enemies.Add(enemy); // object reference not set to an instance of an object error
 
                 // misc
