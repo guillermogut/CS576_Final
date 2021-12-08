@@ -9,7 +9,13 @@ public class thirdPersonCamera : MonoBehaviour
     private CinemachineFreeLook _cinemachineFreeLook;
     private string _inputAxisNameX;
     private string _inputAxisNameY;
-
+    public bool fade;
+    public GameObject deathMenu;
+    
+    private void Start()
+    {
+        fade = false;
+    }
     void Awake()
     {
         _cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
@@ -25,5 +31,19 @@ public class thirdPersonCamera : MonoBehaviour
         _cinemachineFreeLook.m_Orbits[0].m_Radius = _cinemachineFreeLook.m_Orbits[0].m_Radius + Input.mouseScrollDelta.y * -1f;
         _cinemachineFreeLook.m_Orbits[1].m_Radius = _cinemachineFreeLook.m_Orbits[1].m_Radius + Input.mouseScrollDelta.y * -1f;
         _cinemachineFreeLook.m_Orbits[2].m_Radius = _cinemachineFreeLook.m_Orbits[2].m_Radius + Input.mouseScrollDelta.y * -1f;
+
+
+
+
+        if(fade)
+        {
+            GetComponent<CinemachineStoryboard>().m_Alpha += 1f * Time.deltaTime;
+
+            if(GetComponent<CinemachineStoryboard>().m_Alpha >1)
+            {
+                deathMenu.SetActive(true);
+            }
+
+        }
     }
 }

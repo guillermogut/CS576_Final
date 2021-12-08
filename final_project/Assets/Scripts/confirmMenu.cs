@@ -30,7 +30,7 @@ public class confirmMenu : MonoBehaviour
         aimingSphere.SetActive(false);
         gameObject.SetActive(false);
         actionMenu.SetActive(false);
-        player.GetComponent<player>().speed = 2;
+        player.GetComponent<player>().speed = player.GetComponent<player>().currentSpeed;
         
         player.GetComponent<player>().isActing = false;
         player.GetComponent<player>().isAiming = false;

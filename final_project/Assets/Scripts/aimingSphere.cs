@@ -17,7 +17,7 @@ public class aimingSphere : MonoBehaviour
         scale = 10;
         growAndrotateSpeed = 5f;
         rotateSpeed = 1f;
-        growSpeed = 10f;
+        growSpeed = 10f + player.GetComponent<player>().attackSpeed;
     }
     public void OnEnable()
     {

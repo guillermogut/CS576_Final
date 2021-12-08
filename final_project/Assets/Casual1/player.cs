@@ -14,6 +14,7 @@ public class player : MonoBehaviour
     public Vector3 pos;
     private Vector3 destination;
     public int health;
+    public float mana;
     public int attack;
     public float attackSpeed;
     public float speed;//speed
@@ -32,6 +33,7 @@ public class player : MonoBehaviour
     public bool isFiring;
     public bool isLeveling;
 
+    public GameObject aimingSphere;
     public GameObject target;
     public GameObject targetCylinder;
 
@@ -42,6 +44,7 @@ public class player : MonoBehaviour
     public GameObject confirmMenu;
     public GameObject lvlMenu;
 
+    public List<GameObject> itemList;
     //effects
     public GameObject airTxt;
     void Start()
@@ -53,6 +56,7 @@ public class player : MonoBehaviour
         pos = playerObj.transform.position;
 
         health = 100;
+        mana = 0;
         attack = 50;
         attackSpeed = 1;
         isMoving = false;
@@ -94,7 +98,7 @@ public class player : MonoBehaviour
 
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
             //Debug.Log("click");
-            if(Vector3.Distance(pos, destination) < .05f)
+            if(Vector3.Distance(pos, destination) < .1f)
             {
 
                 speed = 0;
@@ -125,7 +129,8 @@ public class player : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.name == "Handgun")
+
+                        if (hit.collider.tag == "Enemy" && hit.collider.bounds.Intersects(aimingSphere.GetComponent<Collider>().bounds))
                         {
                             
                             turnPlayer(hit.point);
@@ -152,18 +157,13 @@ public class player : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.name == currentMap.name)
-                {
-                   
+            {Debug.Log("currenct map name: " + hit.collider.name);
+
+
+
                     turnPlayer(hit.point);
-                    //GetComponent<animController>().isRunning = true;
-                    speed = 2;
+                    speed = currentSpeed;
                     isMoving = true;
-
-
-                }
-
 
             }
 
@@ -202,7 +202,9 @@ public class player : MonoBehaviour
         int lvl2 = lvl;
 
         if (lvl == 1) return 50f;
-        return Mathf.Log(lvl2)* Mathf.Log(lvl2) + 2*Mathf.Log(lvl2)* 50;
+
+        return lvl * 100;
+        //return Mathf.Log(lvl2)* Mathf.Log(lvl2) + 2*Mathf.Log(lvl2)* 50;
     }
 
     public void getExp(float exp)
@@ -219,6 +221,13 @@ public class player : MonoBehaviour
             expForNext = getExperienceForNextLevel(level+1);
         }
     }
+
+    public void getItem()
+    {
+
+    }
+
+
 
     public void GetAttacked() {
         

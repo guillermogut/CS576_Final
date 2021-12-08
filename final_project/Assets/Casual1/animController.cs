@@ -19,18 +19,26 @@ public class animController : MonoBehaviour
 
     public GameObject player;
     public GameObject rigLayerWeaponAim;
+    public GameObject rigLayerWeaponFiring;
     /// </summary>
     public GameObject muzzleFlash;
-
+    public bool recoil;
     public GameObject target;
     public GameObject atBar;
     public GameObject playerStatus;
 
     public float normalAttackSpeed;
 
+    public GameObject rightHandIK;
+
+    public bool isHealing;
+    public GameObject healEffect;
+    public GameObject healingSound;
     // Start is called before the first frame update
     void Start()
     {
+        recoil = false;
+        isHealing = false;
         normalAttackSpeed = 1f;
         WNotReady.transform.position = weapon.transform.position;
         WNotReady.transform.rotation = weapon.transform.rotation;
@@ -47,8 +55,25 @@ public class animController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(recoil)
+        {
+            //rigLayerWeaponFiring.GetComponent<Rig>().weight += .999f *Time.deltaTime;
+            rigLayerWeaponFiring.GetComponent<Rig>().weight = Mathf.Lerp(0, 1, .5f);
 
-
+        }
+        else if(!recoil)
+        {
+            rigLayerWeaponFiring.GetComponent<Rig>().weight -= .9f * Time.deltaTime;
+            //rigLayerWeaponFiring.GetComponent<Rig>().weight = Mathf.Lerp(1, 0, .5f);
+        }
+        if(isHealing)
+        {
+            rightHandIK.GetComponent<TwoBoneIKConstraint>().weight = 0;
+        }
+        else if(!isHealing)
+        {
+            rightHandIK.GetComponent<TwoBoneIKConstraint>().weight = 1;
+        }
         if (player.GetComponent<player>().isMoving)
         {
             anim.SetBool("isRunning",true);
@@ -68,10 +93,12 @@ public class animController : MonoBehaviour
         }
         if (player.GetComponent<player>().isAiming)
         {
+            Debug.Log("reeeee");
             anim.SetBool("idle", true);
             anim.SetBool("isRunning", false);
             anim.SetBool("isFiring", false);
-            rigLayerWeaponAim.GetComponent<Rig>().weight = 1;
+            rigLayerWeaponAim.GetComponent<Rig>().weight = 1f;
+            
         }
 
         if (player.GetComponent<player>().isFiring)
@@ -95,12 +122,13 @@ public class animController : MonoBehaviour
     {
         if(muzzleFlash.activeSelf)
         {
+            recoil = false;
             muzzleFlash.SetActive(false);
         }
         else
         {
-            
-            
+
+            recoil = true;
             muzzleFlash.SetActive(true);
             target = player.GetComponent<player>().target;
             target.SendMessage("takeDamage", player.GetComponent<player>().attack);
@@ -117,5 +145,24 @@ public class animController : MonoBehaviour
     public void playGunshotSound()
     {
         weapon.GetComponent<AudioSource>().Play();
+    }
+
+    public void relaxRightIK()
+    {
+        isHealing = true;
+        
+    }
+
+    public void tightenRightIk()
+    {
+        isHealing = false;
+        anim.SetBool("isHealing", false);
+    }
+
+    public void playHealEffect()
+    {
+        playerStatus.GetComponent<playerStatus>().currentMp =0;
+        healingSound.GetComponent<AudioSource>().Play();
+        healEffect.GetComponent<ParticleSystem>().Play();
     }
 }
