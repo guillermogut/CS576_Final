@@ -9,13 +9,14 @@ public class itemMenu : MonoBehaviour
     public List<GameObject> itemList;
     public GameObject itemSlotHolder;
     private GameObject[] itemSlots;
-
+    public GameObject selectedItem;
     public GameObject itemWindow;
+    public bool itemSelected;
     // Start is called before the first frame update
     void Start()
     {
         itemList = player.GetComponent<player>().itemList;
-        
+        itemSelected = false;
     }
 
     // Update is called once per frame
@@ -42,6 +43,24 @@ public class itemMenu : MonoBehaviour
 
     }
 
+    public void selectItem(GameObject selectedThing)
+    {
+        Debug.Log("ITEM NOW SELECTED");
+        selectedItem = selectedThing;
+    }
+    public void useItem()
+    {
+        if(itemSelected)
+        {
+            Debug.Log(selectedItem.name+"WORK--------------------------------");
+            selectedItem.GetComponent<placeHolderItem>().itemAbility();
+            itemSelected = false;
+        }
+        else
+        {
+            Debug.Log("NO ITEM SELECTED");
+        }
+    }
     public void removeItem()//put item arguement here
     {
 
@@ -52,4 +71,6 @@ public class itemMenu : MonoBehaviour
     {
         itemWindow.SetActive(false);
     }
+
+    
 }

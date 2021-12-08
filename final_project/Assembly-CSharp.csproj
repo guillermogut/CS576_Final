@@ -53,11 +53,14 @@
     <UnityVersion>2020.3.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\deathMenu.cs" />
     <Compile Include="Assets\scripts\lvlUp.cs" />
     <Compile Include="Assets\Casual1\animController.cs" />
+    <Compile Include="Assets\placeHolderItem.cs" />
     <Compile Include="Assets\scripts\aimingSphere.cs" />
     <Compile Include="Assets\scripts\PlayerStats.cs" />
     <Compile Include="Assets\scripts\handgun.cs" />
+    <Compile Include="Assets\fadeToBlack.cs" />
     <Compile Include="Assets\unity-wireframe-master\Assets\Wireframe\Examples\Scripts\AutoRotate.cs" />
     <Compile Include="Assets\scripts\cameraScript.cs" />
     <Compile Include="Assets\scripts\txt.cs" />
@@ -76,8 +79,7 @@
     <Compile Include="Assets\scripts\playerProgression.cs" />
     <Compile Include="Assets\Casual1\player.cs" />
     <Compile Include="Assets\scripts\testplayer.cs" />
-    <Compile Include="Assets\fadeToBlack.cs" />
-    <Compile Include="Assets\deathMenu.cs" />
+    <Compile Include="Assets\abilityMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
