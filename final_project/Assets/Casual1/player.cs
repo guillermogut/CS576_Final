@@ -230,5 +230,8 @@ public class player : MonoBehaviour
 
     public void GetAttacked() {
         // Triggered when the player is attacked by an enemy
+        if (health >= 5) {
+            health -= 5;
+        }
     }
 }
