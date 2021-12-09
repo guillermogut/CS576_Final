@@ -25,35 +25,73 @@ public class itemMenu : MonoBehaviour
         
     }
 
-    public void populateInventory()
+    public void OnEnable()
     {
-        //get item list
-        //get item slots
-        //for every item in item list
-        if (itemList.Count == 0) return;
+        populateInventory();
+        
 
-        for(int i = 0; i < itemList.Count; i++)
+    }
+
+    public void OnDisable()
+    {
+        for (int i = 0; i < player.GetComponent<player>().itemList.Count; i++)
         {
-            if (!itemSlotHolder.transform.GetChild(i).GetComponent<itemSlot>().itemInSlot) continue;
-
-            itemSlotHolder.transform.GetChild(i).GetComponent<itemSlot>().item = itemList[i];
-            //itemSlotHolder.transform.GetChild(i).GetComponent<Image>().sprite = itemSlotHolder.transform.GetChild(i).GetComponent<itemSlot>().item.
+            itemSlotHolder.transform.GetChild(i).DetachChildren();
+            itemSlotHolder.transform.GetChild(i).GetComponent<Button>().image.overrideSprite = itemSlotHolder.transform.GetChild(i).GetComponent<itemSlot>().blank;
+     
         }
-        //put in an available slot in item slots
+    }
+    public void populateInventory()
+    {Debug.Log("pop inventory, list length: "+ player.GetComponent<player>().itemList.Count);
+ 
+        if (player.GetComponent<player>().itemList.Count == 0) return;
+
+        for (int i = 0; i < player.GetComponent<player>().itemList.Count; i++)
+        {
+
+            player.GetComponent<player>().itemList[i].transform.SetParent(itemSlotHolder.transform.GetChild(i));
+
+            if(itemSlotHolder.transform.GetChild(i).childCount == 0)
+            {
+                itemSlotHolder.transform.GetChild(i).GetComponent<Button>().image.overrideSprite = itemSlotHolder.transform.GetChild(i).GetComponent<itemSlot>().blank;
+            }
+            else
+            {
+                itemSlotHolder.transform.GetChild(i).GetComponent<Button>().image.overrideSprite = itemSlotHolder.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            }
+            
+      
+        }
+        
 
     }
 
     public void selectItem(GameObject selectedThing)
     {
+        Debug.Log("SELECTED ITEM TO USE--------> " + selectedItem.transform.parent.name);
         Debug.Log("ITEM NOW SELECTED");
+        
         selectedItem = selectedThing;
     }
     public void useItem()
     {
-        if(itemSelected)
+         Debug.Log("in useItem");
+        
+        if (itemSelected && selectedItem != null)
         {
-            Debug.Log(selectedItem.name+"WORK--------------------------------");
+
             selectedItem.GetComponent<placeHolderItem>().itemAbility();
+
+           
+            Debug.Log(selectedItem.transform.parent.gameObject.GetComponent<Button>());
+
+            selectedItem.transform.parent.gameObject.GetComponent<Button>().image.overrideSprite = selectedItem.transform.parent.gameObject.GetComponent<itemSlot>().blank;
+            Debug.Log("before list count: " + player.GetComponent<player>().itemList.Count);
+            player.GetComponent<player>().itemList.Remove(selectedItem);
+            Debug.Log("after list count: " + player.GetComponent<player>().itemList.Count);
+            Destroy(selectedItem);
+
+
             itemSelected = false;
         }
         else
@@ -63,7 +101,8 @@ public class itemMenu : MonoBehaviour
     }
     public void removeItem()//put item arguement here
     {
-
+        
+       
     }
 
 

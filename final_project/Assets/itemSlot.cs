@@ -8,12 +8,13 @@ public class itemSlot : MonoBehaviour
     // Start is called before the first frame update
     public bool itemInSlot;
     public GameObject item;
-    public Texture2D blank;
+    public Sprite blank;
     public GameObject itemMenu;
     
 
     private void Start()
     {
+        
         if(item == null)
         {
             itemInSlot = false;
@@ -24,30 +25,27 @@ public class itemSlot : MonoBehaviour
         }
     }
 
-
+    public void OnDisable()
+    {
+        GetComponent<Button>().image.overrideSprite = blank;
+    }
     public void placeItemInSlot(GameObject thing)
     {
+        Debug.Log("placing item in slot: " + thing.name);
         item = thing;
         itemInSlot = true;
     }
 
-    public void useItem()
-    {   
-        if (!itemInSlot) return;
-        itemInSlot = false;
-        //play item animation here
-        Debug.Log("item selected in slot-----------------");
-
-        itemMenu.GetComponent<itemMenu>().selectItem(gameObject);
-
-        //item.GetComponent<placeHolderItem>().itemAbility();
-        item = null;
-        gameObject.GetComponent<Image>().sprite = Sprite.Create(blank,new Rect(0.0f, 0.0f, blank.width, blank.height),new Vector2(0.5f, 0.5f),100.0f);
-    }
     public void selectThisItem()
     {
-        
-        itemMenu.GetComponent<itemMenu>().selectItem(GetComponent<itemSlot>().item);
+        if(transform.childCount == 0)
+        {
+            Debug.Log("nothing to select");
+            return;
+        }
+        //itemMenu.GetComponent<itemMenu>().selectItem(item);
+        Debug.Log("in selectThisItem(), the item is " + item.name);
+        itemMenu.GetComponent<itemMenu>().selectedItem = transform.GetChild(0).gameObject;
         
         itemMenu.GetComponent<itemMenu>().itemSelected = true;
     }

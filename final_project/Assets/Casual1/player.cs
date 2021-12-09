@@ -43,7 +43,9 @@ public class player : MonoBehaviour
     public GameObject atBar;
     public GameObject confirmMenu;
     public GameObject lvlMenu;
+    public GameObject placeHolderItem;
 
+    public bool gotItemTest = false;
     public List<GameObject> itemList;
     //effects
     public GameObject airTxt;
@@ -82,6 +84,12 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(gotItemTest)
+        {
+            getItem();
+            gotItemTest = false;
+        }
         Debug.Log("speed: " + speed);
         if (transform.rotation.y != 0 || transform.rotation.x != 0)
         {
@@ -224,9 +232,22 @@ public class player : MonoBehaviour
 
     public void getItem()
     {
+        Debug.Log("got item");
 
+        //GameObject test = Instantiate(placeHolderItem, transform);
+        //itemList.Add(test);
+        for (int i = 0; i < 15; i++)
+        {
+            GameObject test = Instantiate(placeHolderItem, transform);
+            itemList.Add(test);
+        }
+        //itemList.Add(test);
+        Debug.Log("item list length: "+ itemList.Count);
     }
 
+    public void GetAttacked()
+    {
 
+    }
 
 }

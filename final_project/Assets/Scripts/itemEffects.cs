@@ -7,7 +7,9 @@ public class itemEffects : MonoBehaviour
 
     public playerStatus playerStatus;
     public string type;
-
+    public Sprite redPotImage;
+    public Sprite bluPotImage;
+    public Sprite greenPotImage;
     // Start is called before the first frame update
     void Start()
     {
