@@ -248,6 +248,7 @@ public class player : MonoBehaviour
     public void GetAttacked()
     {
 
+    public void GetAttacked() {
+        // Triggered when the player is attacked by an enemy
     }
-
 }

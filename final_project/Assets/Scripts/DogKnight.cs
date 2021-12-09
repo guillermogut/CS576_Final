@@ -54,12 +54,25 @@ public class DogKnight : MonoBehaviour
             direction = CalcDirection();
         }
 
-        transform.position = transform.position + (Time.deltaTime * speed * direction);
-        transform.rotation = Quaternion.LookRotation(direction);
+        Vector3 newPosition = transform.position + (Time.deltaTime * speed * direction);
+        bool nans = float.IsNaN(direction.x) || float.IsNaN(direction.y) || float.IsNaN(direction.z); // weird bug
+        /*
+        if (nans) {
+            Debug.Log("old position: " + transform.position);
+            Debug.Log(direction);
+            Debug.Log(GetPlayer().speed);
+            Debug.Log(GetPlayer().transform.forward);
+            Debug.Log("new position: " + newPosition);
+        }
+        */
+        if (!nans) {
+            transform.position = newPosition;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 
     player GetPlayer() {
-        return GameObject.Find("PlayerChar 2").GetComponent<player>();
+        return GameObject.Find("PlayerChar 3").GetComponent<player>();
     }
 
     void UpdateCurrentState() {
