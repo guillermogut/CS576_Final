@@ -17,7 +17,7 @@ public class DogKnight : MonoBehaviour
     const int STATE_SCURRYING = 2;
     const int STATE_BITING = 3;
     
-    const float BITE_FREQ = 3.0f;
+    const float BITE_FREQ = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +39,41 @@ public class DogKnight : MonoBehaviour
             speed = 0.0f;
             calcDirection = false;
         } else if (state.IsName("WalkForwardBattle")) {
-            speed = 0.5f;
+            if(GetPlayer().isActing)
+            {
+                speed = 0.5f/3f;
+                animController.speed = .333f;
+            }
+            else
+            {
+                speed = 0.5f;
+                animController.speed = 1f;
+            }
+            
         } else if (state.IsName("RunForwardBattle")) {
-            speed = 2.0f;
+            if (GetPlayer().isActing)
+            {
+                animController.speed = .333f;
+                speed = 2f / 3f;
+            }
+            else
+            {
+                animController.speed = 1f;
+                speed = 2f;
+            }
+            
         } else if (state.IsName("Attack01")) {
             speed = 0.0f;
-
+            if (GetPlayer().isActing)
+            {
+                animController.speed = .333f;
+                
+            }
+            else
+            {
+                animController.speed = 1f;
+                
+            }
             float timeSinceLastBite = Time.time - lastBiteTime;
             if (timeSinceLastBite > BITE_FREQ) {
                 GetPlayer().GetAttacked();

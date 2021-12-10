@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class playerProgression : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static List<GameObject> _itemList;
+    public static int _health;
+    public static float _mana;
+    public static int _attack;
+    public static float _attackSpeed;
+    public static float _currentSpeed;
+    public static int _level;
+    public static float _exp;
+    public static int _statusPoints;
+    public static bool _gameStart = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

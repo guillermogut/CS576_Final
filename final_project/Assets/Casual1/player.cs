@@ -33,6 +33,8 @@ public class player : MonoBehaviour
     public bool isConfirming;
     public bool isFiring;
     public bool isLeveling;
+    public bool pepsi;//pepsi = isded
+    public bool isHit;
 
     public GameObject aimingSphere;
     public GameObject target;
@@ -51,34 +53,48 @@ public class player : MonoBehaviour
     public List<GameObject> itemList;
 
     public bool invulFrames = false;
+
+    public bool protectEffect = false;
+
+    public bool doingAThing = false;
     //effects
     public GameObject airTxt;
     void Start()
     {
         target = null;
         Time.timeScale = 1f;
-  
-        playerObj.transform.position = new Vector3(0f,0f,0f);
-        pos = playerObj.transform.position;
-
-        health = 100;
-        mana = 0;
-        attack = 50;
-        attackSpeed = 1;
         isMoving = false;
         isActing = false;
         isAiming = false;
         isConfirming = false;
         isFiring = false;
         isLeveling = false;
-        lookVector = new Vector3(0f,0f,1f);
-        currentSpeed = 2f;
-        abilityMenu = GameObject.Find("abilityMenu");
-        //speed = 1f;
-        level = 0;
-        statusPoints = 0;
-        expForNext = getExperienceForNextLevel(level + 1);
+        isHit = false;
+        lookVector = new Vector3(0f, 0f, 1f);
 
+        abilityMenu = GameObject.Find("abilityMenu");
+        if (playerProgression._gameStart)
+        {
+            
+            playerObj.transform.position = new Vector3(0f, 0f, 0f);
+            pos = playerObj.transform.position;
+            health = 100;
+            mana = 0;
+            attack = 50;
+            attackSpeed = 1;
+            currentSpeed = 2f; 
+            //speed = 1f;
+            level = 0;
+            statusPoints = 0;
+            
+        }
+        else
+        {
+            loadPlayerInfo();
+            
+        }
+
+        expForNext = getExperienceForNextLevel(level + 1);
     }
 
     private void OnEnable()
@@ -99,10 +115,10 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(gotItemTest)
+        if (gotItemTest)
         {
-            getItem();
+            //for testing item system
+            //getItem();
             gotItemTest = false;
         }
         Debug.Log("speed: " + speed);
@@ -121,31 +137,31 @@ public class player : MonoBehaviour
 
             this.transform.position += this.transform.forward * speed * Time.deltaTime;
             //Debug.Log("click");
-            if(Vector3.Distance(pos, destination) < .1f)
+            if (Vector3.Distance(pos, destination) < .1f)
             {
 
                 speed = 0;
                 isMoving = false;
             }
         }
-        if(!isMoving)
+        if (!isMoving)
         {
 
         }
-        if(isActing)
+        if (isActing)
         {
             speed = 0;
 
-            
+
             transform.rotation = transform.rotation;
             isMoving = false;
 
             //Debug.Log("acting");
-            if(isAiming)
+            if (isAiming)
             {
-                
+
                 //Debug.Log("aiming");
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && !doingAThing)
                 {
                     //Debug.Log("after aiming");
                     RaycastHit hit;
@@ -155,44 +171,46 @@ public class player : MonoBehaviour
                         Debug.Log("enemy name: " + hit.collider.name);
                         if (hit.collider.tag == "Enemy" && hit.collider.bounds.Intersects(aimingSphere.GetComponent<Collider>().bounds))
                         {
-                            
+
                             turnPlayer(hit.point);
+                            
                             target = hit.collider.gameObject;
                             targetCylinder.SetActive(true);
                             targetCylinder.transform.position = target.transform.position;
                             confirmMenu.SetActive(true);
 
                             actionMenu.GetComponent<actionMenu>().setButtonInteract(false);
-                            
-                            
+
+
                         }
 
 
                     }
                 }
             }
-           
+
         }
-        if(Input.GetMouseButtonDown(0) && !isActing)
+        if (Input.GetMouseButtonDown(0) && !isActing && !doingAThing)
         {
 
             GetComponent<animController>().isAiming = false;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
-            {Debug.Log("currenct map name: " + hit.collider.name);
+            {
+                Debug.Log("currenct map name: " + hit.collider.name);
 
 
 
-                    turnPlayer(hit.point);
-                    speed = currentSpeed;
-                    isMoving = true;
+                turnPlayer(hit.point);
+                speed = currentSpeed;
+                isMoving = true;
 
             }
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value ==1)
+        if (Input.GetKeyDown(KeyCode.Space) && atBar.GetComponent<Slider>().value == 1 && !doingAThing)
         {
             speed = 0;
             actionMenu.SetActive(true);
@@ -200,7 +218,7 @@ public class player : MonoBehaviour
 
             //playerStatus.GetComponent<playerStatus>().currentAt = 0;
         }
-       
+
     }
 
     void turnPlayer(Vector3 dest)
@@ -245,18 +263,18 @@ public class player : MonoBehaviour
         }
     }
 
-    public void getItem()
+    public void getItem(GameObject theThing)
     {
         Debug.Log("got item");
 
         //GameObject test = Instantiate(placeHolderItem, transform);
         //itemList.Add(test);
-        for (int i = 0; i < 15; i++)
-        {
-            GameObject test = Instantiate(placeHolderItem, transform);
-            itemList.Add(test);
-        }
-        //itemList.Add(test);
+        //for (int i = 0; i < 15; i++)
+        //{
+        //    GameObject test = Instantiate(placeHolderItem, transform);
+        //    itemList.Add(test);
+        //}
+        itemList.Add(theThing);
         Debug.Log("item list length: "+ itemList.Count);
     }
 
@@ -264,8 +282,24 @@ public class player : MonoBehaviour
     public void GetAttacked() {
         // Triggered when the player is attacked by an enemy
         
-        playerStatus.GetComponent<playerStatus>().currentHp -= 20;
+        //StartCoroutine("setInvulFrames");
+        if (invulFrames) return;
 
+        if(!invulFrames)
+        {
+            StartCoroutine("setInvulFrames");
+            isHit = true;
+            if (protectEffect)
+            {
+                playerStatus.GetComponent<playerStatus>().currentHp -= 30 / 2;
+
+            }
+            else
+            {
+                playerStatus.GetComponent<playerStatus>().currentHp -= 30;
+            }
+        }
+        
     }
 
     public void haste()
@@ -281,7 +315,7 @@ public class player : MonoBehaviour
     IEnumerator hasteCountdown()
     {
 
-        yield return new WaitForSeconds(30F);
+        yield return new WaitForSeconds(15F);
         
         GetComponent<player>().currentSpeed = prevSpeed;
 
@@ -289,20 +323,29 @@ public class player : MonoBehaviour
 
     IEnumerator setInvulFrames()
     {
-
-        yield return new WaitForSeconds(5F);
+        invulFrames = true;
+        yield return new WaitForSeconds(2F);
 
         invulFrames = false;
     }
     IEnumerator protectCountdown()
     {
-        yield return new WaitForSeconds(30F);
+        yield return new WaitForSeconds(20F);
 
+        protectEffect = false;
+    }
 
-        playerStatus.GetComponent<playerStatus>().currentHp = abilityMenu.GetComponent<abilityMenu>().prevHealth;
-        playerStatus.GetComponent<playerStatus>().hp = abilityMenu.GetComponent<abilityMenu>().prevHealth;
-
-
+    private void loadPlayerInfo()
+    {
+        playerProgression._itemList = itemList;
+        playerProgression._health = health;
+        playerProgression._mana = mana;
+        playerProgression._attack = attack;
+        playerProgression._attackSpeed = attackSpeed;
+        playerProgression._level = level;
+        playerProgression._exp = exp;
+        playerProgression._statusPoints = statusPoints;
+        
 
     }
 }

@@ -44,6 +44,8 @@ public class animController : MonoBehaviour
     public List<GameObject> walkingSounds;
     public GameObject walkingSoundObject;
 
+    public GameObject freeLookCam;
+
     public int abilityNum; // 0 for heal, 1 for haste, 2 for protect
     // Start is called before the first frame update
     void Start()
@@ -121,8 +123,22 @@ public class animController : MonoBehaviour
             anim.SetBool("isRunning",false);
 
         }
-        
-      
+        if(player.GetComponent<player>().isHit)
+        {
+            anim.SetBool("isFiring", false);
+            anim.SetBool("idle", false);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("pepsi", false);
+            anim.SetBool("isHit", true);
+        }
+        if(player.GetComponent<player>().pepsi)
+        {
+            player.GetComponent<player>().isHit = false;
+            anim.SetBool("isFiring", false) ;
+            anim.SetBool("idle", false);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("pepsi", true);
+        }
     }
     public void setIsFiringTrue()
     {
@@ -219,5 +235,23 @@ public class animController : MonoBehaviour
         {
             playProtectEffect();
         }
+    }
+
+    public void freeze()
+    {
+        player.GetComponent<player>().doingAThing = true;
+    }
+    public void unfreeze()
+    {
+        player.GetComponent<player>().doingAThing = false;
+    }
+
+    public void setFade()
+    {
+        freeLookCam.GetComponent<thirdPersonCamera>().fade = true;
+    }
+    public void resetHit()
+    {
+        player.GetComponent<player>().isHit = false;
     }
 }

@@ -11,6 +11,8 @@ public class playerStatus : MonoBehaviour
     /// <summary>
     ///  hook up the initial values for the resource bars from player script
     /// </summary>
+    /// 
+    public GameObject deathMenu;
     public float hp;
     public float currentHp;
 
@@ -50,7 +52,7 @@ public class playerStatus : MonoBehaviour
         at = 100;
         currentAt = 0;
 
-        mpSpeed = 3f;
+        mpSpeed = 60f;
         atSpeed = 62f;
         hpSpeed = 0f;
 
@@ -60,6 +62,8 @@ public class playerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
 
         //code for making AT bar message pulse
         if (currentAt == 100)
@@ -95,7 +99,10 @@ public class playerStatus : MonoBehaviour
 
         // code for hp mp and at bar movement
         currentHp += (hpSpeed * Time.deltaTime);
-
+        if(currentHp<=0)
+        {
+            player.GetComponent<player>().pepsi = true;// pepsi is  isded upside down and backwards, get it?
+        }
         if(currentHp > 100)
         {
             currentHp = 100;
@@ -111,7 +118,7 @@ public class playerStatus : MonoBehaviour
         {
             currentMp = 100;
         }
-        if(currentMp > 50)
+        if(currentMp > 50 && !player.GetComponent<player>().isAiming && player.GetComponent<player>().isActing)
         {
             healButton.GetComponent<Button>().interactable = true;
         }
