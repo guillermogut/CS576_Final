@@ -337,6 +337,19 @@ public class player : MonoBehaviour
 
     private void loadPlayerInfo()
     {
+        itemList = playerProgression._itemList;
+        health= playerProgression._health;
+        mana= playerProgression._mana;
+        attack=playerProgression._attack;
+        attackSpeed = playerProgression._attackSpeed;
+        level = playerProgression._level;
+        exp = playerProgression._exp;
+        statusPoints = playerProgression._statusPoints;
+        
+
+    }
+    private void savePlayerInfo()
+    {
         playerProgression._itemList = itemList;
         playerProgression._health = health;
         playerProgression._mana = mana;
@@ -345,7 +358,7 @@ public class player : MonoBehaviour
         playerProgression._level = level;
         playerProgression._exp = exp;
         playerProgression._statusPoints = statusPoints;
-        
+
 
     }
 }
