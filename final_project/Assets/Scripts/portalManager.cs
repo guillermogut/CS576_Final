@@ -23,18 +23,13 @@ public class portalManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.collider.name);
-        if (collision.collider.name.Contains("PlayerChar"))
+        if (other.name.Contains("grillHitbox"))
         {
 
             if (level == 1)
             {
                 SceneManager.LoadScene("Floor2");
-            } 
+            }
             else if (level == 2)
             {
                 SceneManager.LoadScene("Floor3");
@@ -63,8 +58,7 @@ public class portalManager : MonoBehaviour
             {
                 SceneManager.LoadScene("EndMenu");
             }
-
-
         }
     }
+
 }
