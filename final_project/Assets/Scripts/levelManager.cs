@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class levelManager : MonoBehaviour
 {
 
-    public GameObject portal;
-    public Text enemiesLeftText;
     public GameObject character;
     public int totalEnemies;
-    public int portalThreshold;
     public int maxItems;
     public int level;
     public float spawnSpeed;
@@ -23,8 +19,8 @@ public class levelManager : MonoBehaviour
     private List<GameObject> items;
     private List<GameObject> enemies;
     private Transform[] floorTiles;
+    private bool levelComplete;
     private bool levelFailed;
-    private bool portalSpawned;
 
     // Start is called before the first frame update
     void Start()
@@ -36,19 +32,9 @@ public class levelManager : MonoBehaviour
     void Update()
     {
 
-
-        if (enemiesDefeated >= portalThreshold && portalSpawned == false)
+        if (enemiesDefeated == totalEnemies)
         {
-            portalSpawned = true;
-            SpawnPortal();
-            enemiesLeftText.text = "portal has spawned!";
-        } else if (enemiesDefeated >= portalThreshold)
-        {
-            enemiesLeftText.text = "portal has spawned!";
-        }
-        else
-        {
-            enemiesLeftText.text = (portalThreshold - enemiesDefeated) + " enemies left until portal spawns";
+            levelComplete = true;
         }
 
     }
@@ -59,9 +45,11 @@ public class levelManager : MonoBehaviour
         items = new List<GameObject>();
         enemiesSpawned = 0;
         enemiesDefeated = 0;
+        levelComplete = false;
         levelFailed = false;
         floorTiles = floorFolder.GetComponentsInChildren<Transform>();
-        portalSpawned = false;
+        spawnSpeed = 1f;
+        spawnSize = 1;
 
         StartCoroutine(SpawnEnemies());
 
@@ -98,7 +86,6 @@ public class levelManager : MonoBehaviour
 
                 GameObject enemy = Instantiate(enemyPrefab, enemyPosition, enemyRotation) as GameObject;
                 enemy.AddComponent<DogKnight>();
-                enemy.GetComponent<DogKnight>().levelManager = this;
                 enemies.Add(enemy); // object reference not set to an instance of an object error
 
                 // misc
@@ -110,34 +97,5 @@ public class levelManager : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnSpeed);
         }
-    }
-
-    void SpawnPortal()
-    {
-
-        bool valid = false;
-        Transform randTile = floorTiles[0];
-
-        while (valid == false)
-        {
-            int rand = Random.Range(0, floorTiles.Length - 1);
-            randTile = floorTiles[rand];
-
-            float zdiff = Mathf.Abs(character.transform.position.z - randTile.position.z);
-            float xdiff = Mathf.Abs(character.transform.position.x - randTile.position.x);
-
-            if ((zdiff > 10f && zdiff < 30f) && (xdiff > 10f && xdiff < 30f))
-            {
-                valid = true;
-            }
-        }
-
-        portal.transform.position = new Vector3(randTile.position.x, randTile.position.y + 1, randTile.position.z);
-        
-    }
-
-    public void EnemyDeath()
-    {
-        enemiesDefeated += 1;
     }
 }

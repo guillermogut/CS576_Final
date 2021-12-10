@@ -34,7 +34,7 @@ public class player : MonoBehaviour
     public bool isFiring;
     public bool isLeveling;
     public bool pepsi;//pepsi = isded
-    public bool isHit;
+    //public bool isHit;
 
     public GameObject aimingSphere;
     public GameObject target;
@@ -69,7 +69,7 @@ public class player : MonoBehaviour
         isConfirming = false;
         isFiring = false;
         isLeveling = false;
-        isHit = false;
+        //isHit = false;
         lookVector = new Vector3(0f, 0f, 1f);
 
         abilityMenu = GameObject.Find("abilityMenu");
@@ -288,7 +288,7 @@ public class player : MonoBehaviour
         if(!invulFrames)
         {
             StartCoroutine("setInvulFrames");
-            isHit = true;
+            //isHit = true;
             if (protectEffect)
             {
                 playerStatus.GetComponent<playerStatus>().currentHp -= 30 / 2;

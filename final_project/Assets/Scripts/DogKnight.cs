@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DogKnight : MonoBehaviour
 {
-
-    public levelManager levelManager;
     private Animator animController;
     private CharacterController charController;
     private Vector3 direction;
@@ -17,7 +15,7 @@ public class DogKnight : MonoBehaviour
     const int STATE_SCURRYING = 2;
     const int STATE_BITING = 3;
     
-    const float BITE_FREQ = 10.0f;
+    const float BITE_FREQ = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +101,7 @@ public class DogKnight : MonoBehaviour
     }
 
     player GetPlayer() {
-        return GameObject.Find("PlayerChar 4").GetComponent<player>();
+        return GameObject.FindWithTag("Player").GetComponent<player>();
     }
 
     void UpdateCurrentState() {
@@ -168,7 +166,6 @@ public class DogKnight : MonoBehaviour
 
         GetPlayer().getExp(30);
         Destroy(gameObject);
-        levelManager.EnemyDeath();
     }
 
 

@@ -123,17 +123,17 @@ public class animController : MonoBehaviour
             anim.SetBool("isRunning",false);
 
         }
-        if(player.GetComponent<player>().isHit)
-        {
-            anim.SetBool("isFiring", false);
-            anim.SetBool("idle", false);
-            anim.SetBool("isRunning", false);
-            anim.SetBool("pepsi", false);
-            anim.SetBool("isHit", true);
-        }
+        //if(player.GetComponent<player>().isHit)
+        //{
+        //    anim.SetBool("isFiring", false);
+        //    anim.SetBool("idle", false);
+        //    anim.SetBool("isRunning", false);
+        //    anim.SetBool("pepsi", false);
+        //    anim.SetBool("isHit", true);
+        //}
         if(player.GetComponent<player>().pepsi)
         {
-            player.GetComponent<player>().isHit = false;
+            //player.GetComponent<player>().isHit = false;
             anim.SetBool("isFiring", false) ;
             anim.SetBool("idle", false);
             anim.SetBool("isRunning", false);
@@ -252,6 +252,6 @@ public class animController : MonoBehaviour
     }
     public void resetHit()
     {
-        player.GetComponent<player>().isHit = false;
+        //player.GetComponent<player>().isHit = false;
     }
 }
