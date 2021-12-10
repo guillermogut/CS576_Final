@@ -19,6 +19,7 @@ public class player : MonoBehaviour
     public float attackSpeed;
     public float speed;//speed
     public float currentSpeed;
+    public float prevSpeed;
     public int level;
     public float exp;
     public float expForNext;
@@ -44,9 +45,12 @@ public class player : MonoBehaviour
     public GameObject confirmMenu;
     public GameObject lvlMenu;
     public GameObject placeHolderItem;
+    public GameObject abilityMenu;
 
     public bool gotItemTest = false;
     public List<GameObject> itemList;
+
+    public bool invulFrames = false;
     //effects
     public GameObject airTxt;
     void Start()
@@ -69,6 +73,7 @@ public class player : MonoBehaviour
         isLeveling = false;
         lookVector = new Vector3(0f,0f,1f);
         currentSpeed = 2f;
+        abilityMenu = GameObject.Find("abilityMenu");
         //speed = 1f;
         level = 0;
         statusPoints = 0;
@@ -81,10 +86,20 @@ public class player : MonoBehaviour
         lvlMenu.GetComponent<lvlUp>().exitLevelUp();
        
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collision ");
+        if (collision.collider.tag == "Untagged")
+        {
+            isMoving = false;
+            speed = 0;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-
+        
         if(gotItemTest)
         {
             getItem();
@@ -137,7 +152,7 @@ public class player : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit))
                     {
-
+                        Debug.Log("enemy name: " + hit.collider.name);
                         if (hit.collider.tag == "Enemy" && hit.collider.bounds.Intersects(aimingSphere.GetComponent<Collider>().bounds))
                         {
                             
@@ -245,10 +260,49 @@ public class player : MonoBehaviour
         Debug.Log("item list length: "+ itemList.Count);
     }
 
-    public void GetAttacked()
-    {
-
+   
     public void GetAttacked() {
         // Triggered when the player is attacked by an enemy
+        
+        playerStatus.GetComponent<playerStatus>().currentHp -= 20;
+
+    }
+
+    public void haste()
+    {
+        StartCoroutine("hasteCountdown");
+    }
+
+    public void protect()
+    {
+        StartCoroutine("protectCountdown");
+    }
+
+    IEnumerator hasteCountdown()
+    {
+
+        yield return new WaitForSeconds(30F);
+        
+        GetComponent<player>().currentSpeed = prevSpeed;
+
+    }
+
+    IEnumerator setInvulFrames()
+    {
+
+        yield return new WaitForSeconds(5F);
+
+        invulFrames = false;
+    }
+    IEnumerator protectCountdown()
+    {
+        yield return new WaitForSeconds(30F);
+
+
+        playerStatus.GetComponent<playerStatus>().currentHp = abilityMenu.GetComponent<abilityMenu>().prevHealth;
+        playerStatus.GetComponent<playerStatus>().hp = abilityMenu.GetComponent<abilityMenu>().prevHealth;
+
+
+
     }
 }

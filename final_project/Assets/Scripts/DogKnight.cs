@@ -72,7 +72,7 @@ public class DogKnight : MonoBehaviour
     }
 
     player GetPlayer() {
-        return GameObject.Find("PlayerChar 3").GetComponent<player>();
+        return GameObject.Find("PlayerChar 4").GetComponent<player>();
     }
 
     void UpdateCurrentState() {
@@ -87,7 +87,7 @@ public class DogKnight : MonoBehaviour
         Vector3 playerPosition = GetPlayer().transform.position;
         Vector3 ratPosition = transform.position;
         float dist = (playerPosition - ratPosition).magnitude;
-        Debug.Log(dist);
+        //Debug.Log(dist);
 
         if (dist > C) {
             animController.SetInteger("state", STATE_IDLE);
@@ -129,4 +129,16 @@ public class DogKnight : MonoBehaviour
         Vector3 finalTargetPosition = targetPosition + t * targetVelocity;
         return Vector3.Normalize(finalTargetPosition - ourPosition);
     }
+
+
+    public void takeDamage(int dmg)
+    {
+        Debug.Log("Dog ID:" + gameObject.GetInstanceID() + " took " + dmg + " damage.");
+
+        GetPlayer().getExp(30);
+        Destroy(gameObject);
+    }
+
+
+
 }

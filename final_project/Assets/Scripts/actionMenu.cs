@@ -50,6 +50,7 @@ public class actionMenu : MonoBehaviour
     }
     public void attackButton()
     {
+        player.GetComponent<Rigidbody>().detectCollisions = false;
         confirmSound.GetComponent<AudioSource>().Play();
         //player.GetComponent<player>().isConfirming = true;
         player.GetComponent<player>().isAiming = true;
@@ -64,6 +65,7 @@ public class actionMenu : MonoBehaviour
 
         if(player.GetComponent<player>().isActing&& aimingSphere.activeSelf)
         {
+            player.GetComponent<Rigidbody>().detectCollisions = true;
             Debug.Log("first");
             aimingSphere.SetActive(false);
             player.GetComponent<player>().target = null;
@@ -73,6 +75,7 @@ public class actionMenu : MonoBehaviour
         else if(player.GetComponent<player>().isActing && !aimingSphere.activeSelf)
         {
             Debug.Log("second");
+            player.GetComponent<Rigidbody>().detectCollisions = true;
             player.GetComponent<player>().isActing = false;
             //aimingSphere.SetActive(false);
             aimingCylinder.SetActive(false);
@@ -104,6 +107,16 @@ public class actionMenu : MonoBehaviour
     public void healButton()
     {
         player.GetComponent<Animator>().SetBool("isHealing",true);
-        mpBar.GetComponent<Slider>().value -= .5f;
+        mpBar.GetComponent<Slider>().value = 0f;
+    }
+    public void protectButton()
+    {
+        player.GetComponent<Animator>().SetBool("isHealing", true);
+        mpBar.GetComponent<Slider>().value = 0f;
+    }
+    public void hasteButton()
+    {
+        player.GetComponent<Animator>().SetBool("isHealing", true);
+        mpBar.GetComponent<Slider>().value = 0f;
     }
 }

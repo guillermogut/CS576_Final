@@ -9,26 +9,58 @@ public class abilityMenu : MonoBehaviour
 
     public GameObject mpBar;
     public GameObject player;
+    public GameObject anim;
+    public GameObject playerStatus;
 
+    private float prevSpeed;
+    public float prevHealth;
 
+    
     public void protectButton()
     {
-        player.GetComponent<Animator>().SetBool("isProtecting", true);
-        mpBar.GetComponent<Slider>().value -= .75f;
+        prevHealth = player.GetComponent<player>().health;
+
+        playerStatus.GetComponent<playerStatus>().currentHp += 200;
+        playerStatus.GetComponent<playerStatus>().hp += 200;
+
+        player.GetComponent<player>().protect();
+        gameObject.SetActive(false);
+        player.GetComponent<animController>().abilityNum = 2;
+        player.GetComponent<Animator>().SetBool("isHealing", true);//isHealing sets bool for all abilities
+        mpBar.GetComponent<Slider>().value =0f;
     }
 
     public void hasteButton()
     {
-        player.GetComponent<Animator>().SetBool("isHasting", true);//lol wtf
-        mpBar.GetComponent<Slider>().value -= .75f;
+        player.GetComponent<player>().prevSpeed = player.GetComponent<player>().currentSpeed;
+        player.GetComponent<player>().currentSpeed = 5f;
+
+        player.GetComponent<player>().haste();
+
+        gameObject.SetActive(false);
+        player.GetComponent<animController>().abilityNum = 1;
+        player.GetComponent<Animator>().SetBool("isHealing", true);//isHealing sets bool for all abilities
+        mpBar.GetComponent<Slider>().value =0f;
     }
 
     public void healButton()
     {
-        player.GetComponent<Animator>().SetBool("isHealing", true);
-        mpBar.GetComponent<Slider>().value -= .75f;
+        if(GameObject.Find("HealthBar").GetComponent<Slider>().value + player.GetComponent<player>().health / 3 >1f)
+        {
+            GameObject.Find("HealthBar").GetComponent<Slider>().value = 1f;
+        }
+        else
+        {
+            GameObject.Find("HealthBar").GetComponent<Slider>().value += player.GetComponent<player>().health / 3;
+        }
+        
+        gameObject.SetActive(false);
+        player.GetComponent<animController>().abilityNum = 0;
+        player.GetComponent<Animator>().SetBool("isHealing", true);//isHealing sets bool for all abilities
+        mpBar.GetComponent<Slider>().value =0f;
+        
     }
-
+    
     public void exitAbility()
     {
         gameObject.SetActive(false);

@@ -34,6 +34,17 @@ public class animController : MonoBehaviour
     public bool isHealing;
     public GameObject healEffect;
     public GameObject healingSound;
+
+    public GameObject hasteEffect;
+    public GameObject hasteSound;
+
+    public GameObject protectEffect;
+    public GameObject protectSound;
+
+    public List<GameObject> walkingSounds;
+    public GameObject walkingSoundObject;
+
+    public int abilityNum; // 0 for heal, 1 for haste, 2 for protect
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +60,7 @@ public class animController : MonoBehaviour
         isAiming = false;
 
         anim = GetComponent<Animator>();
-
+        popSounds();
     }
 
     // Update is called once per frame
@@ -164,5 +175,49 @@ public class animController : MonoBehaviour
         playerStatus.GetComponent<playerStatus>().currentMp =0;
         healingSound.GetComponent<AudioSource>().Play();
         healEffect.GetComponent<ParticleSystem>().Play();
+    }
+    public void playHasteEffect()
+    {
+        playerStatus.GetComponent<playerStatus>().currentMp = 0;
+        hasteSound.GetComponent<AudioSource>().Play();
+        hasteEffect.GetComponent<ParticleSystem>().Play();
+    }
+    public void playProtectEffect()
+    {
+        playerStatus.GetComponent<playerStatus>().currentMp = 0;
+        protectSound.GetComponent<AudioSource>().Play();
+        protectEffect.GetComponent<ParticleSystem>().Play();
+    }
+
+    public void popSounds()
+    {
+        for(int i = 0; i< walkingSoundObject.transform.childCount;i++)
+        {
+
+            walkingSounds.Add(walkingSoundObject.transform.GetChild(i).gameObject);
+        }
+    }
+    public void stepSound()
+    {
+        int randoInt = UnityEngine.Random.Range(0,5);
+
+        walkingSounds[randoInt].GetComponent<AudioSource>().Play();
+
+
+    }
+    public void playEffect()
+    {
+        if(abilityNum == 0)
+        {
+            playHealEffect();
+        }
+        else if(abilityNum == 1)
+        {
+            playHasteEffect();
+        }
+        else
+        {
+            playProtectEffect();
+        }
     }
 }
