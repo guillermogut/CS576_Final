@@ -26,7 +26,6 @@ public class confirmMenu : MonoBehaviour
     public void confirm()
     {
 
-        
         aimingSphere.SetActive(false);
         gameObject.SetActive(false);
         actionMenu.SetActive(false);
@@ -37,7 +36,19 @@ public class confirmMenu : MonoBehaviour
         player.GetComponent<player>().isFiring = true;
         aimingCylinder.SetActive(false);
     }
+    public void confirmAbility()
+    {
 
+        aimingSphere.SetActive(false);
+        gameObject.SetActive(false);
+        actionMenu.SetActive(false);
+        player.GetComponent<player>().speed = player.GetComponent<player>().currentSpeed;
+
+        player.GetComponent<player>().isActing = false;
+        player.GetComponent<player>().isAiming = false;
+        //player.GetComponent<player>().isFiring = true;
+        aimingCylinder.SetActive(false);
+    }
     public void cancel()
     {
         gameObject.SetActive(false);

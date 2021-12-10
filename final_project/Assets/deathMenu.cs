@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class deathMenu : MonoBehaviour
@@ -19,5 +20,16 @@ public class deathMenu : MonoBehaviour
     private void OnEnable()
     {
         Time.timeScale = 0;
+    }
+
+
+    public void tryAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void quitGame()
+    {
+        // go back to start screen
     }
 }

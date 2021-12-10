@@ -11,6 +11,7 @@ public class abilityMenu : MonoBehaviour
     public GameObject player;
     public GameObject anim;
     public GameObject playerStatus;
+    public GameObject confirmMenu;
 
     private float prevSpeed;
     public float prevHealth;
@@ -18,11 +19,7 @@ public class abilityMenu : MonoBehaviour
     
     public void protectButton()
     {
-        prevHealth = player.GetComponent<player>().health;
-
-        playerStatus.GetComponent<playerStatus>().currentHp += 200;
-        playerStatus.GetComponent<playerStatus>().hp += 200;
-
+        confirmMenu.GetComponent<confirmMenu>().confirmAbility();
         player.GetComponent<player>().protect();
         gameObject.SetActive(false);
         player.GetComponent<animController>().abilityNum = 2;
@@ -32,6 +29,7 @@ public class abilityMenu : MonoBehaviour
 
     public void hasteButton()
     {
+        confirmMenu.GetComponent<confirmMenu>().confirmAbility();
         player.GetComponent<player>().prevSpeed = player.GetComponent<player>().currentSpeed;
         player.GetComponent<player>().currentSpeed = 5f;
 
@@ -45,7 +43,8 @@ public class abilityMenu : MonoBehaviour
 
     public void healButton()
     {
-        if(GameObject.Find("HealthBar").GetComponent<Slider>().value + player.GetComponent<player>().health / 3 >1f)
+        confirmMenu.GetComponent<confirmMenu>().confirmAbility();
+        if (GameObject.Find("HealthBar").GetComponent<Slider>().value + player.GetComponent<player>().health / 3 >1f)
         {
             GameObject.Find("HealthBar").GetComponent<Slider>().value = 1f;
         }

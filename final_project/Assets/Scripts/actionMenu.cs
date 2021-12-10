@@ -17,6 +17,8 @@ public class actionMenu : MonoBehaviour
     public GameObject itemMenu;
     public GameObject mpBar;
     public GameObject abilityMenu;
+    public GameObject abilities;
+    public GameObject cancelButtonObj;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -35,10 +37,26 @@ public class actionMenu : MonoBehaviour
         {
             button.interactable = x;
         }
+        abilities.GetComponent<Button>().interactable = x;
+    }
+    public void setButtonInteractButCancel(bool x)
+    {
+        Button[] buttons = GetComponentsInChildren<Button>();
+
+        foreach (var button in buttons)
+        {
+            button.interactable = x;
+        }
+        abilities.GetComponent<Button>().interactable = x;
+        cancelButtonObj.GetComponent<Button>().interactable = true;
     }
 
     private void Update()
     {
+        if(player.GetComponent<player>().isAiming || player.GetComponent<player>().isConfirming)
+        {
+            abilities.GetComponent<Button>().interactable = false;
+        }
         if(player.GetComponent<player>().statusPoints>0)
         {
             lvlButton.interactable = true;
@@ -55,6 +73,8 @@ public class actionMenu : MonoBehaviour
         //player.GetComponent<player>().isConfirming = true;
         player.GetComponent<player>().isAiming = true;
         aimingSphere.SetActive(true);
+        setButtonInteractButCancel(false);
+
         //confirmMenu.SetActive(true);
     }
     public void cancelButton()
@@ -66,7 +86,7 @@ public class actionMenu : MonoBehaviour
         if(player.GetComponent<player>().isActing&& aimingSphere.activeSelf)
         {
             player.GetComponent<Rigidbody>().detectCollisions = true;
-            Debug.Log("first");
+            
             aimingSphere.SetActive(false);
             player.GetComponent<player>().target = null;
             aimingCylinder.SetActive(false);
@@ -74,7 +94,7 @@ public class actionMenu : MonoBehaviour
         }
         else if(player.GetComponent<player>().isActing && !aimingSphere.activeSelf)
         {
-            Debug.Log("second");
+            
             player.GetComponent<Rigidbody>().detectCollisions = true;
             player.GetComponent<player>().isActing = false;
             //aimingSphere.SetActive(false);
@@ -85,6 +105,7 @@ public class actionMenu : MonoBehaviour
 
 
         }
+        setButtonInteract(true);
     }
     public void itemButton()
     {
