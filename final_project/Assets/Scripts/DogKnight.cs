@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DogKnight : MonoBehaviour
 {
-
-    public levelManager levelManager;
     private Animator animController;
     private CharacterController charController;
     private Vector3 direction;
@@ -168,7 +166,6 @@ public class DogKnight : MonoBehaviour
 
         GetPlayer().getExp(30);
         Destroy(gameObject);
-        levelManager.EnemyDeath();
     }
 
 
