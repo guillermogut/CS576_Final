@@ -13,6 +13,9 @@ public class levelManager : MonoBehaviour
     public int spawnSize;
     public GameObject floorFolder;
     public GameObject enemyPrefab;
+    public GameObject hpItemPrefab;
+    public GameObject mpItemPrefab;
+    public GameObject atItemPrefab;
 
     private int enemiesSpawned;
     private int enemiesDefeated;
@@ -51,6 +54,7 @@ public class levelManager : MonoBehaviour
         spawnSpeed = 1f;
         spawnSize = 1;
 
+        StartCoroutine(SpawnItems());
         StartCoroutine(SpawnEnemies());
 
     }
@@ -96,6 +100,73 @@ public class levelManager : MonoBehaviour
 
             }
             yield return new WaitForSeconds(spawnSpeed);
+        }
+    }
+
+    IEnumerator SpawnItems() {
+        yield return new WaitForSeconds(0);
+
+        for (int i = 0; i < maxItems; i++) {
+            /*
+            // determine where to spawn, and spawn
+            bool valid = false;
+            Transform randTile = floorTiles[0];
+            while (valid == false)
+            {
+                int rand = Random.Range(0, floorTiles.Length - 1);
+                randTile = floorTiles[rand];
+
+                float zdiff = Mathf.Abs(character.transform.position.z - randTile.position.z);
+                float xdiff = Mathf.Abs(character.transform.position.x - randTile.position.x);
+
+                if ((zdiff > 3f && zdiff < 5f) && (xdiff > 3f && xdiff < 5f))
+                {
+                    valid = true;
+                }
+            }
+            */
+            int rand = Random.Range(0, floorTiles.Length - 1);
+            Transform randTile = floorTiles[rand];
+
+            int rand2 = Random.Range(0, 2);
+            string itemType;
+            GameObject itemPrefab;
+            switch (rand2) {
+                case 0:
+                    itemType = "hp";
+                    itemPrefab = hpItemPrefab;
+                    break;
+                case 1:
+                    itemType = "mp";
+                    itemPrefab = mpItemPrefab;
+                    break;
+                case 2:
+                default:
+                    itemType = "at";
+                    itemPrefab = atItemPrefab;
+                    break;
+            }
+            Vector3 itemPosition = new Vector3(randTile.position.x, randTile.position.y + 3.0f, randTile.position.z);
+            Quaternion itemRotation = new Quaternion(0f, 0f, 0f, 0f);
+
+            //Debug.Log($"position: {itemPosition} rotation: {itemRotation}");
+            GameObject item = Instantiate(itemPrefab, itemPosition, itemRotation) as GameObject;
+            //item.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            //item.transform.position = itemPosition;
+            itemEffects itemEffects = item.AddComponent<itemEffects>();
+            Rigidbody rb = item.AddComponent<Rigidbody>();
+            BoxCollider collider = item.AddComponent<BoxCollider>();
+            collider.center = itemPosition;
+            collider.size = new Vector3(3.0f, 3.0f, 3.0f);
+            //Debug.Log("center:" + collider.center);
+            //Debug.Log("size:" + collider.size);
+
+            GameObject srContainer = new GameObject("cool gameobject");
+            srContainer.AddComponent<SpriteRenderer>();
+            srContainer.transform.parent = item.transform;
+
+            itemEffects.type = itemType;
+            items.Add(item);
         }
     }
 }

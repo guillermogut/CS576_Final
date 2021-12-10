@@ -6232,12 +6232,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 1599536928}
   totalEnemies: 5
-  maxItems: 0
+  maxItems: 10
   level: 0
   spawnSpeed: 0
   spawnSize: 0
   floorFolder: {fileID: 1463581851}
   enemyPrefab: {fileID: 8422892626600285392, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+  hpItemPrefab: {fileID: 4161799371654001245, guid: d29980ce52f3f604582198400b9b112a, type: 3}
+  mpItemPrefab: {fileID: 4161799371654001245, guid: d29980ce52f3f604582198400b9b112a, type: 3}
+  atItemPrefab: {fileID: 4161799371654001245, guid: d29980ce52f3f604582198400b9b112a, type: 3}
 --- !u!4 &349231870
 Transform:
   m_ObjectHideFlags: 0

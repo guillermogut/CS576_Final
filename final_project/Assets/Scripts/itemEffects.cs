@@ -64,4 +64,16 @@ public class itemEffects : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("hello world");
+
+        if (collision.gameObject.name == "PlayerChar 3")
+        {
+            playerStatus = collision.gameObject.GetComponent<playerStatus>();
+            applyEffect();
+            Destroy(gameObject);
+        }
+    }
+
 }

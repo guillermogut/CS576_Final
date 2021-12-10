@@ -23,6 +23,8 @@ public class DogKnight : MonoBehaviour
         animController = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
 
+        gameObject.tag = "Enemy";
+
     }
 
     // Update is called once per frame
@@ -87,7 +89,7 @@ public class DogKnight : MonoBehaviour
         Vector3 playerPosition = GetPlayer().transform.position;
         Vector3 ratPosition = transform.position;
         float dist = (playerPosition - ratPosition).magnitude;
-        Debug.Log(dist);
+        //Debug.Log(dist);
 
         if (dist > C) {
             animController.SetInteger("state", STATE_IDLE);
