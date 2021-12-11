@@ -43,15 +43,17 @@ public class abilityMenu : MonoBehaviour
 
     public void healButton()
     {
-        confirmMenu.GetComponent<confirmMenu>().confirmAbility();
-        if (GameObject.Find("HealthBar").GetComponent<Slider>().value + player.GetComponent<player>().health / 3 >1f)
-        {
-            GameObject.Find("HealthBar").GetComponent<Slider>().value = 1f;
-        }
-        else
-        {
-            GameObject.Find("HealthBar").GetComponent<Slider>().value += player.GetComponent<player>().health / 3;
-        }
+         confirmMenu.GetComponent<confirmMenu>().confirmAbility();
+        playerStatus.GetComponent<playerStatus>().currentHp = player.GetComponent<player>().health;
+        //GameObject.Find("HealthBar").GetComponent<Slider>().value = 1f;
+        //if (GameObject.Find("HealthBar").GetComponent<Slider>().value + player.GetComponent<player>().health / 3 >1f)
+        //{
+        //    GameObject.Find("HealthBar").GetComponent<Slider>().value = 1f;
+        //}
+        //else
+        //{
+        //    GameObject.Find("HealthBar").GetComponent<Slider>().value += player.GetComponent<player>().health / 3;
+        //}
         
         gameObject.SetActive(false);
         player.GetComponent<animController>().abilityNum = 0;
