@@ -704,6 +704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM FreeLook1
       objectReference: {fileID: 0}
+    - target: {fileID: 3945130086654762118, guid: dd53eec9daf01714180983e5883a2c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3945130086654762120, guid: dd53eec9daf01714180983e5883a2c0a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -12402,6 +12406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8096280846154571677, guid: b1fa65e102fde88408f7f872ca786e4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa65e102fde88408f7f872ca786e4c, type: 3}
 --- !u!1 &1862443099
@@ -17623,7 +17631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967718810}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 37.699997, z: 0}
+  m_LocalPosition: {x: 6.5, y: 31.699997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 302116607}

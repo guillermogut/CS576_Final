@@ -6046,6 +6046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM FreeLook1
       objectReference: {fileID: 0}
+    - target: {fileID: 3945130086654762118, guid: dd53eec9daf01714180983e5883a2c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3945130086654762120, guid: dd53eec9daf01714180983e5883a2c0a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6948,6 +6952,10 @@ PrefabInstance:
     - target: {fileID: 8096280846154571677, guid: b1fa65e102fde88408f7f872ca786e4c, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096280846154571677, guid: b1fa65e102fde88408f7f872ca786e4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa65e102fde88408f7f872ca786e4c, type: 3}
