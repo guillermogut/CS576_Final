@@ -13,6 +13,6 @@ public class playerProgression : MonoBehaviour
     public static int _level;
     public static float _exp;
     public static int _statusPoints;
-    public static bool _gameStart = true;
+    public bool _gameStart = true;
 
 }

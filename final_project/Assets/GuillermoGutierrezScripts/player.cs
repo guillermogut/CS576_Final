@@ -8,6 +8,7 @@ public class player : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject playerObj;
+    public playerProgression playerProgression;
     public GameObject currentMap;
     public Animator animator;
     
@@ -348,7 +349,7 @@ public class player : MonoBehaviour
         
 
     }
-    private void savePlayerInfo()
+    public void savePlayerInfo()
     {
         playerProgression._itemList = itemList;
         playerProgression._health = health;
